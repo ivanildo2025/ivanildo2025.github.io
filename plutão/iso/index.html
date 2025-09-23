@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bonita Plutão Linux - A Distro Bonita e Estelar Baseada em Debian</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #000428, #004e92); /* Fundo espacial escuro */
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        header {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid #4a90e2;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px #000;
+        }
+        nav {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        nav a:hover {
+            color: #4a90e2;
+        }
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(74, 144, 226, 0.5);
+        }
+        section {
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #4a90e2;
+            border-bottom: 1px solid #ffffff;
+            padding-bottom: 10px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        ul li {
+            background: rgba(255, 255, 255, 0.1);
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        .estrelas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #eee, transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+                radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+                radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent),
+                /* Mais estrelas... */
+            background-repeat: repeat;
+            background-size: 200px 100px;
+            animation: twinkle 3s infinite;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+    <div class="estrelas"></div>
+    <header>
+        <h1>🌌 Bonita Plutão Linux</h1>
+        <p>A distribuição Linux mais bonita e estelar, baseada no Debian!</p>
+    </header>
+    
+    <nav>
+        <a href="#inicio">Início</a>
+        <a href="#recursos">Recursos</a>
+        <a href="#download">Download</a>
+        <a href="#comunidade">Comunidade</a>
+    </nav>
+    
+    <main>
+        <section id="inicio">
+            <h2>Bem-vindo à Bonita Plutão Linux</h2>
+            <p>A <strong>Bonita Plutão Linux</strong> é uma distribuição Linux leve e visualmente deslumbrante, construída sobre a rocha estável do <strong>Debian 12 (Bookworm)</strong>. Inspirada no misterioso planeta anão Plutão, ela traz temas espaciais, interfaces elegantes e performance otimizada para desktops, laptops e até setups de desenvolvimento. Se você quer um sistema "bonito" (com temas personalizados que lembram conceitos futuristas do Windows, mas open-source), essa é a distro perfeita!</p>
+            <p>Por que "Bonita Plutão"? Porque ela é <em>bonita</em> como uma galáxia e <em>exploratória</em> como uma missão espacial para Plutão. Fácil de usar, segura e 100% gratuita.</p>
+        </section>
+        
+        <section id="recursos">
+            <h2>Principais Recursos</h2>
+            <ul>
+                <li><strong>Base Debian Estável:</strong> Herda a estabilidade e o vasto repositório de pacotes do Debian, com suporte a APT e .deb.</li>
+                <li><strong>Interface Visualmente Incrível:</strong> GNOME customizado com temas espaciais (estrelas animadas, gradientes cósmicos) e suporte a KDE Plasma para quem prefere customização.</li>
+                <li><strong>Leve e Rápida:</strong> Otimizada para hardware antigo ou novo, com consumo mínimo de RAM (inicia em ~500MB).</li>
+                <li><strong>Ferramentas Pré-instaladas:</strong> Inclui Flatpak, Snap e suporte a Wine para apps Windows. Perfeita para devs com Git, VS Code e Docker.</li>
+                <li><strong>Segurança Espacial:</strong> Firewall configurado por padrão, atualizações automáticas e criptografia de disco fácil de ativar.</li>
+                <li><strong>Temas e Wallpapers:</strong> Pacote exclusivo com imagens de Plutão (da NASA) e efeitos de partículas estelares.</li>
+            </ul>
+        </section>
+        
+        <section id="download">
+            <h2>Baixe Agora!</h2>
+            <p>Versão atual: <strong>1.0 Plutão Edition</strong> (ISO de 2.5GB).</p>
+            <p><a href="#" style="background: #4a90e2; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Download ISO (Fictício - Link para Debian como Base)</a></p>
+            <p><small>Verifique o SHA256: abc123... (Em produção, usamos um hash real! Para testar, baixe o Debian e aplique nossos temas.)</small></p>
+            <p>Instruções de instalação: Grave a ISO em um pendrive com Rufus ou dd, boot e siga o wizard simples. Tempo médio: 15 minutos.</p>
+        </section>
+        
+        <section id="comunidade">
+            <h2>Junte-se à Comunidade</h2>
+            <p>Estamos construindo isso juntos! Participe do fórum fictício no Reddit (r/BonitaPlutao) ou contribua no GitHub.</p>
+            <p><a href="#" style="background: #4a90e2; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Fórum</a> | <a href="#" style="background: #4a90e2; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">GitHub Repo</a></p>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Bonita Plutão Linux. Livre como o espaço. Baseado em Debian. Criado com amor por Grok (xAI).</p>
+    </footer>
+</body>
+</html>
