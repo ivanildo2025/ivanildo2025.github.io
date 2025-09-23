@@ -1,1 +1,93 @@
-<>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Plutão Linux: Uma distro open-source baseada em Debian e FreeBSD, estável, rápida e com interface moderna.">
+    <title>Plutão Linux</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/plutão/img/icone-iniciar.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos anteriores com ajustes */
+        body { font-family: 'Poppins', sans-serif; }
+        .menu-toggle { display: none; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
+        @media (max-width: 768px) {
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 60px; left: 0; width: 100%; background: rgba(0, 0, 0, 0.9); }
+            .nav-links.active { display: flex; }
+            .menu-toggle { display: block; }
+        }
+        footer a { color: #00d4ff; text-decoration: none; margin: 0 0.5rem; }
+        footer a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container" role="navigation" aria-label="Menu principal">
+            <div class="logo"><img src="/plutão/img/icone-iniciar.png" width="40" alt="Logo do Plutão Linux"> Plutão Linux</div>
+            <button class="menu-toggle" aria-label="Abrir menu">☰</button>
+            <ul class="nav-links">
+                <li><a href="#features">Recursos</a></li>
+                <li><a href="#download">Download</a></li>
+                <li><a href="#about">Sobre</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Seções hero e features inalteradas -->
+
+    <section id="download" class="download">
+        <div class="container">
+            <h2>Faça o Download Gratuito</h2>
+            <div class="grid">
+                <div class="feature-card">
+                    <h3>Plutão (Debian)</h3>
+                    <p>Versão mais recente: Plutão 1.0 (ISO de 2GB, rolling release)</p>
+                    <a href="/plutão/iso/debian.iso" class="btn download-btn" onclick="simularDownload(event, 'Debian')">Baixar última ISO</a>
+                </div>
+                <div class="feature-card">
+                    <h3>Plutão BSD (FreeBSD)</h3>
+                    <p>Versão mais recente: Plutão BSD 1.0 (ISO de 2GB, rolling release)</p>
+                    <a href="/plutão/iso/freebsd.iso" class="btn download-btn" onclick="simularDownload(event, 'FreeBSD')">Baixar última ISO</a>
+                </div>
+            </div>
+            <p style="margin-top: 1rem; font-size: 0.9rem;">Verifique o checksum após o download. <a href="#" onclick="showChecksum()">Saiba mais</a></p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="year"></span> Plutão Linux. Distro open-source baseada em Debian e FreeBSD. Licença GPL-3.0.</p>
+            <p>
+                <a href="https://github.com/plutao-linux" target="_blank">Repositório</a> |
+                <a href="/docs" target="_blank">Documentação</a> |
+                <a href="mailto:suporte@plutaolinux.org">Suporte</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        function simularDownload(event, version) {
+            event.preventDefault();
+            const message = `Iniciando download do Plutão ${version}. Em um site real, o arquivo ISO seria baixado.`;
+            const downloadMessage = document.createElement('p');
+            downloadMessage.textContent = message;
+            downloadMessage.style.color = '#00d4ff';
+            event.target.parentNode.appendChild(downloadMessage);
+            setTimeout(() => downloadMessage.remove(), 3000);
+        }
+
+        function year() {
+            return new Date().getFullYear();
+        }
+        document.getElementById('year').textContent = year();
+
+        function showChecksum() {
+            alert('Use o comando `sha256sum pluto.iso` para verificar o checksum do arquivo baixado.');
+        }
+
+        document.querySelector('.menu-toggle').addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
