@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plutão Linux - Distro Elegante Baseada no Debian</title>
+    <title>Plutão</title>
     <link rel="icon" type="image/png" sizes="32x32" href="/plutão/img/icone-iniciar.png">
     <style>
         /* Reset e Estilos Gerais */
@@ -169,8 +169,8 @@
 
     <section class="hero">
         <div class="container">
-            <h1>Bem-vindo ao Plutão Linux</h1>
-            <p>A distro Linux elegante e poderosa, baseada no Debian. Estável, rápida e pronta para o espaço!</p>
+            <h1>Bem-vindo ao Plutão</h1>
+            <p>Essa distro é  baseada no Debian ou no freeBSD, por padrão o debian e o link principal, pois tem mais recursos. Estável, rápida e pronta para o uso!</p>
             <a href="#download" class="btn">Baixe Agora</a>
         </div>
     </section>
@@ -198,15 +198,16 @@
     <section id="download" class="download">
         <div class="container">
             <h2>Faça o Download Gratuito</h2>
-            <p>Versão mais recente: Plutão 1.0 (ISO de 2GB)</p>
-            <a href="/plutão/iso/" class="btn download-btn" onclick="simularDownload()">Baixar ISO</a>
+            <p>Versão mais recente: Plutão (ISO de 2GB), esse sistema é rolling release</p>
+            <a href="/plutão/iso/" class="btn download-btn" onclick="simularDownload()">Baixar útima iso</a>
             <p style="margin-top: 1rem; font-size: 0.9rem;">Verifique o checksum após o download.</p>
+            <a href="/plutão/iso/" class="btn download-btn" onclick="simularDownload()">base freeBSD</a>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Plutão Linux. Distro open-source baseada no Debian. Licença GPL.</p>
+        <p>&copy; <span id="year"></span> Plutão Linux. Distro open-source baseada no Debian. Licença GPL.</p>
         </div>
     </footer>
 
@@ -214,6 +215,11 @@
         function simularDownload() {
             alert('Download iniciado! Em um site real, isso redirecionaria para o arquivo ISO.');
         }
+
+   function year() {
+        return new Date().getFullYear();
+    }
+    document.getElementById('year').textContent = year();
     </script>
 </body>
 </html>
