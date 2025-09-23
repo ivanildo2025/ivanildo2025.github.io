@@ -98,8 +98,8 @@
 <body>
     <div class="estrelas"></div>
     <header>
-        <h1>🌌 Bonita Plutão Linux</h1>
-        <p>A distribuição Linux mais bonita e estelar, baseada no Debian!</p>
+        <h1><img src="/plutão/img/icone-iniciar.png" width="40">Plutão</h1>
+        <p></p>
     </header>
     
     <nav>
@@ -111,20 +111,20 @@
     
     <main>
         <section id="inicio">
-            <h2>Bem-vindo à Bonita Plutão Linux</h2>
-            <p>A <strong>Bonita Plutão Linux</strong> é uma distribuição Linux leve e visualmente deslumbrante, construída sobre a rocha estável do <strong>Debian 12 (Bookworm)</strong>. Inspirada no misterioso planeta anão Plutão, ela traz temas espaciais, interfaces elegantes e performance otimizada para desktops, laptops e até setups de desenvolvimento. Se você quer um sistema "bonito" (com temas personalizados que lembram conceitos futuristas do Windows, mas open-source), essa é a distro perfeita!</p>
-            <p>Por que "Bonita Plutão"? Porque ela é <em>bonita</em> como uma galáxia e <em>exploratória</em> como uma missão espacial para Plutão. Fácil de usar, segura e 100% gratuita.</p>
+            <h2>Bem-vindo à Plutão </h2>
+            <p>A <strong> Plutão</strong> é uma distribuição, construída sobre a rocha estável do <strong>Debian 13 (Trixie)</strong>. Inspirada no misterioso planeta anão Plutão, feitas para desktops, laptops e até setups de comecializados, do nossa loja.</p>
+            <p></p>
         </section>
         
         <section id="recursos">
             <h2>Principais Recursos</h2>
             <ul>
                 <li><strong>Base Debian Estável:</strong> Herda a estabilidade e o vasto repositório de pacotes do Debian, com suporte a APT e .deb.</li>
-                <li><strong>Interface Visualmente Incrível:</strong> GNOME customizado com temas espaciais (estrelas animadas, gradientes cósmicos) e suporte a KDE Plasma para quem prefere customização.</li>
+                <li><strong>Interface Visualmente Incrível:</strong> KDE Plasma para quem prefere customização.</li>
                 <li><strong>Leve e Rápida:</strong> Otimizada para hardware antigo ou novo, com consumo mínimo de RAM (inicia em ~500MB).</li>
-                <li><strong>Ferramentas Pré-instaladas:</strong> Inclui Flatpak, Snap e suporte a Wine para apps Windows. Perfeita para devs com Git, VS Code e Docker.</li>
+                <li><strong>Ferramentas Pré-instaladas:</strong> Inclui Flatpak, Snap e Homebrew. Perfeita para devs com Git, VS Code e Docker.</li>
                 <li><strong>Segurança Espacial:</strong> Firewall configurado por padrão, atualizações automáticas e criptografia de disco fácil de ativar.</li>
-                <li><strong>Temas e Wallpapers:</strong> Pacote exclusivo com imagens de Plutão (da NASA) e efeitos de partículas estelares.</li>
+                
             </ul>
         </section>
         
@@ -144,7 +144,11 @@
     </main>
     
     <footer>
-        <p>&copy; 2025 Bonita Plutão Linux. Livre como o espaço. Baseado em Debian. Criado com amor por Grok (xAI).</p>
+        <p>&copy; <span id="year"></span> Plutão. Distro open-source. Licença MIT.</p>
     </footer>
+    <script> function year() {
+        return new Date().getFullYear();
+    }
+    document.getElementById('year').textContent = year();</script>
 </body>
 </html>
