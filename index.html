@@ -1,74 +1,228 @@
-<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="48x48" href="/img/favicon-48x48.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="128x128" href="/img/favicon-128x128.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/img/android-chrome-192x192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="/img/android-chrome-512x512.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <title>ivanildo.com.br</title>
-    <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lista de Links</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-      background-color: #f4f4f4;
-    }
-    h1 {
-      text-align: center;
-      color: #333;
-    }
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-    li {
-      margin: 10px 0;
-    }
-    a {
-      text-decoration: none;
-      color: #0066cc;
-      font-size: 18px;
-    }
-    a:hover {
-      text-decoration: underline;
-      color: #003366;
-    }
-  </style>
+    <title>Plutão</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/plutão/img/icone-iniciar.png">
+    <style>
+        /* Reset e Estilos Gerais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #0c0c0c, #1a1a2e, #16213e);
+            color: #fff;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #00d4ff;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #00d4ff;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="%23fff" opacity="0.1"/></svg>') repeat; /* Estrelas simples */
+        }
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: #00d4ff;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, #00d4ff, #0099cc);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 212, 255, 0.3);
+        }
+
+        /* Features */
+        .features {
+            padding: 5rem 0;
+        }
+        .features h2 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            color: #00d4ff;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s;
+        }
+        .feature-card:hover {
+            transform: scale(1.05);
+        }
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #00d4ff;
+        }
+
+        /* Download Section */
+        .download {
+            padding: 5rem 0;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .download h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: #00d4ff;
+        }
+        .download-btn {
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; } /* Simplificar mobile */
+        }
+    </style>
 </head>
 <body>
-  <h1>Lista de Links</h1>
-  <ul>
-    <li><a href="https://developer.android.com/games/playgames/emulator?hl=pt-br">https://developer.android.com/games/playgames/emulator?hl=pt-br</a></li>
-    <li><a href="https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe">yt-dlp</a></li>
-    <li><a href="https://www.tokyvideo.com/br">https://www.tokyvideo.com/br</a></li>
-    <li><a href="https://animesflix.net/">https://animesflix.net/</a></li>
-    <li><a href="/projetos/">Projetos</a></li>
-    
-    
-  </ul>
-</body>
-</html>
+    <header>
+        <nav class="container">
+            <div class="logo">Ivanildo</div>
+            <ul class="nav-links">
+                <li><a href="/projetos/">Projetos</a></li>
+                <li><a href="/Curso/">Curso</a></li>
+                <li><a href="/u/">Links</a></li>
+                <li><a href="#about">Sobre</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<pre>
+    <section class="hero">
+        <div class="container">
+            <h1>Bem-vindo</h1>
+            <p></p>
+            <!--<a href="#download" class="btn">Baixe Agora</a>-->
+        </div>
+    </section>
+<!--
+    <section id="features" class="features">
+        <div class="container">
+            <h2>Por Que Escolher Plutão?</h2>
+            <div class="grid">
+                <div class="feature-card">
+                    <h3>Base Debian</h3>
+                    <p>Herda a estabilidade e vastos repositórios do Debian, com atualizações seguras e confiáveis.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Interface Amigável</h3>
+                    <p>Ambiente desktop leve e customizável, inspirado em temas espaciais para uma experiência fluida.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Bom Desempenho</h3>
+                    <p>Otimizada para hardware antigo e novo, com suporte a GPUs e drivers open-source.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <section id="download" class="download">
+        <div class="container">
+            <h2>Faça o Download Gratuito</h2>
+            <p>Versão mais recente: Plutão (ISO de 2GB), esse sistema é rolling release, base Debian</p>
+            <a href="/plutão/iso/" class="btn download-btn" onclick="simularDownload()">Baixar útima iso</a>
+            <br><br>
+            <h2>Faça o Download Gratuito</h2>
+            <p>Versão mais recente: Plutão BSD(ISO de 2GB), esse sistema é rolling release</p>
+            <p style="margin-top: 1rem; font-size: 0.9rem;">Verifique o checksum após o download.</p>
+            <a href="/plutão/iso/" class="btn download-btn" onclick="simularDownload()">Base freeBSD</a>
+        </div>
+    </section>-->
 
+    <footer>
+        <div class="container">
+        <p>&copy; <span id="year"></span> ivanildo.com.br.</p>
+        </div>
+    </footer>
 
- 
-</pre>
+    <script>
+        function simularDownload() {
+            alert('Download iniciado! Em um site real, isso redirecionaria para o arquivo ISO.');
+        }
+
+   function year() {
+        return new Date().getFullYear();
+    }
+    document.getElementById('year').textContent = year();
+    </script>
 </body>
 </html>
