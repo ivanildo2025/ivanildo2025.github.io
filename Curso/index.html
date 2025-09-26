@@ -3,85 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="icon" type="image/x-icon" href="/favicon.ico">
-     <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
-     <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
-     <link rel="icon" type="image/png" sizes="48x48" href="/img/favicon-48x48.png">
-     <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon-96x96.png">
-     <link rel="icon" type="image/png" sizes="128x128" href="/img/favicon-128x128.png">
-     <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
-     <link rel="icon" type="image/png" sizes="192x192" href="/img/android-chrome-192x192.png">
-     <link rel="icon" type="image/png" sizes="512x512" href="/img/android-chrome-512x512.png">
-     <link rel="manifest" href="/site.webmanifest">
-     <title>Informática Básica</title>
-     <style>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/img/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="128x128" href="/img/favicon-128x128.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/img/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/img/android-chrome-512x512.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <title>Informática Básica</title>
+    <style>
+        /* Reset e Estilos Gerais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(to bottom, #000428, #004e92); /* Fundo espacial escuro */
+            background: linear-gradient(to bottom, #000428, #004e92);
             color: #ffffff;
-            margin: 0;
-            padding: 0;
             line-height: 1.6;
+            position: relative;
         }
-        header {
-            background: rgba(0, 0, 0, 0.7);
-            padding: 20px;
-            text-align: center;
-            border-bottom: 2px solid #4a90e2;
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 15px;
         }
-        h1 {
-            margin: 0;
-            font-size: 2.5em;
-            text-shadow: 2px 2px 4px #000;
-        }
-        nav {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 10px;
-            text-align: center;
-        }
-        nav a {
-            color: #ffffff;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: bold;
-        }
-        nav a:hover {
-            color: #4a90e2;
-        }
-        main {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(74, 144, 226, 0.5);
-        }
-        section {
-            margin-bottom: 30px;
-        }
-        h2 {
-            color: #4a90e2;
-            border-bottom: 1px solid #ffffff;
-            padding-bottom: 10px;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        ul li {
-            background: rgba(255, 255, 255, 0.1);
-            margin: 10px 0;
-            padding: 10px;
-            border-radius: 5px;
-        }
-        footer {
-            text-align: center;
-            padding: 10px;
-            background: rgba(0, 0, 0, 0.7);
-            position: fixed;
-            width: 100%;
-            bottom: 0;
-        }
+
+        /* Estrelas de Fundo */
         .estrelas {
             position: fixed;
             top: 0;
@@ -93,76 +46,259 @@
                 radial-gradient(2px 2px at 20px 30px, #eee, transparent),
                 radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
                 radial-gradient(1px 1px at 90px 40px, #fff, transparent),
-                radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent),
-                /* Mais estrelas... */
+                radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent);
             background-repeat: repeat;
-            background-size: 200px 100px;
-            animation: twinkle 3s infinite;
+            background-size: 30vw 15vw; /* Ajustado para responsividade */
+            animation: twinkle 4s infinite;
         }
         @keyframes twinkle {
             0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Header */
+        header {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 1.5rem 0;
+            text-align: center;
+            border-bottom: 2px solid #4a90e2;
+        }
+        header h1 {
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            text-shadow: 2px 2px 4px #000;
+        }
+
+        /* Navegação */
+        nav {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.8rem 0;
+            text-align: center;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: clamp(0.9rem, 3vw, 1rem);
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #4a90e2;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #fff;
+            margin: 2px 0;
+            transition: all 0.3s;
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Main */
+        main {
+            margin: 2rem auto 4rem;
+            padding: clamp(1rem, 5vw, 1.5rem);
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(74, 144, 226, 0.5);
+        }
+        section {
+            margin-bottom: 2rem;
+        }
+        h2 {
+            color: #4a90e2;
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            border-bottom: 1px solid #ffffff;
+            padding-bottom: 0.5rem;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        ul li {
+            background: rgba(255, 255, 255, 0.1);
+            margin: 0.5rem 0;
+            padding: 0.8rem;
+            border-radius: 5px;
+            font-size: clamp(0.9rem, 3vw, 1rem);
+        }
+
+        /* Botão de Download */
+        .btn {
+            display: inline-block;
+            background: #4a90e2;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: clamp(0.9rem, 3vw, 1rem);
+            transition: background 0.3s, transform 0.3s;
+        }
+        .btn:hover {
+            background: #357abd;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.7);
+            width: 100%;
+            font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100px; /* Ajustar conforme a altura do header */
+                left: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.9);
+                padding: 1rem 0;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .hamburger {
+                display: flex;
+            }
+            main {
+                margin: 1rem auto 3rem;
+                padding: 1rem;
+            }
+            header h1 {
+                font-size: clamp(1.5rem, 4vw, 2rem);
+            }
+            .estrelas {
+                background-size: 20vw 10vw;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 10px;
+            }
+            main {
+                margin: 1rem auto;
+                padding: 0.8rem;
+            }
+            .btn {
+                padding: 0.6rem 1.2rem;
+            }
+            footer {
+                position: static; /* Evita sobreposição em telas pequenas */
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .container {
+                max-width: 1200px;
+            }
+            header h1 {
+                font-size: 3rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="estrelas"></div>
     <header>
-        <h1>Informática Básica</h1>
-        <p></p>
+        <div class="container">
+            <h1>Informática Básica</h1>
+            <p>Material de apoio para alunos</p>
+        </div>
     </header>
-    
+
     <nav>
-        <a href="#inicio">Início</a>
-        <a href="#recursos">Recursos</a>
-        <a href="#download">Download</a>
-        <a href="#comunidade">Comunidade</a>
+        <div class="container">
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/">Início</a></li>
+                <li><a href="#recursos">Módulos</a></li>
+                <li><a href="#download">Download</a></li>
+                <li><a href="#comunidade">Comunidade</a></li>
+            </ul>
+        </div>
     </nav>
-    
-    <main>
+
+    <main class="container">
         <section id="inicio">
             <h2>Informática Básica</h2>
-            <p>A <strong> Informática Básica</strong> essa página contem o material de apoio do sendo pensada para que os <strong>alunos</strong> possam cunsulta e se aprofunda nos temas bordados curso.</p>
-            <p></p>
+            <p>Esta página contém o material de apoio do curso de <strong>Informática Básica</strong>, pensada para que os <strong>alunos</strong> possam consultar e se aprofundar nos temas abordados.</p>
         </section>
-        
+
         <section id="recursos">
-            <h2>Módulos e temas</h2>
+            <h2>Módulos e Temas</h2>
             <ul>
-                <li><strong>O que é um computador?</strong> Aborda os componente e as fucionalidades destes em um computador.</li>
-                <li><strong>O que é um Sistema Operacional?</strong> O que é? como fuciona? Quais são?</li>
-                <li><strong>Navergando na internet</strong> Usando os difererentes navegadores, e sites de busca.</li>
-                <li><strong>Descobrindo o Windows</strong> Estudo sobre o a estrutura do sistema, pastas, sistema de arquivos, teclas especiais, programase atalhos.</li>
-                <li><strong>Pacote office</strong> Entendendo a interface e as ferramentas</li>
-                
-               
-                
+                <li><strong>O que é um computador?</strong> Aborda os componentes e as funcionalidades de um computador.</li>
+                <li><strong>O que é um Sistema Operacional?</strong> O que é, como funciona e quais são os principais sistemas.</li>
+                <li><strong>Navegando na internet</strong> Usando diferentes navegadores e sites de busca.</li>
+                <li><strong>Descobrindo o Windows</strong> Estudo sobre a estrutura do sistema, pastas, sistema de arquivos, teclas especiais, programas e atalhos.</li>
+                <li><strong>Pacote Office</strong> Entendendo a interface e as ferramentas.</li>
             </ul>
         </section>
+
         <section id="download">
-            <h2>Apostilas mídias e Slides</h2>
-            <p><strong>O arquivo com todo materia</strong> (ZIP de 2.5GB).</p>
-            <p><a href="/Curso/" style="background: #4a90e2; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Download</a></p>
-            <p><small><ul type="none">
-                <li></li>
-            
-            </ul></small></p>
-            <p></p>
+            <h2>Apostilas, Mídias e Slides</h2>
+            <p><strong>Arquivo com todo o material</strong> (ZIP de 2.5GB).</p>
+            <p><a href="/Curso/material.zip" class="btn">Download</a></p>
         </section>
-        
-       <!-- <section id="comunidade">
+
+        <!-- Seção comentada para futura edição -->
+        <!-- <section id="comunidade">
             <h2>Junte-se à Comunidade</h2>
-            <p>Estamos construindo isso juntos! Participe do fórum fictício no Reddit (r/BonitaPlutao) ou contribua no GitHub.</p>
-            <p><a href="#" style="background: #4a90e2; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Fórum</a> | <a href="#" style="background: #4a90e2; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">GitHub Repo</a></p>
-        </section>-->
+            <p>Participe do fórum ou acesse o repositório no GitHub.</p>
+            <p><a href="#" class="btn">Fórum</a> | <a href="#" class="btn">GitHub Repo</a></p>
+        </section> -->
     </main>
-    
+
     <footer>
-        <p>&copy; <span id="year"></span> ivanildo.com.br</p>
+        <div class="container">
+            <p>&copy; <span id="year"></span> ivanildo.com.br</p>
+        </div>
     </footer>
-    <script> function year() {
-        return new Date().getFullYear();
-    }
-    document.getElementById('year').textContent = year();</script>
+
+    <script>
+        function year() {
+            return new Date().getFullYear();
+        }
+        document.getElementById('year').textContent = year();
+
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            const hamburger = document.querySelector('.hamburger');
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
