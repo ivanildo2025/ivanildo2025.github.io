@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -14,14 +15,13 @@
         body {
             font-family: 'Arial', sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #0c0c0c, #1a1a2e, #16213e);
             color: #fff;
+            background: linear-gradient(135deg, #0c0c0c, #1a1a2e, #16213e);
         }
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 15px;
         }
 
         /* Header */
@@ -40,24 +40,49 @@
             align-items: center;
         }
         .logo {
-            font-size: 1.8rem;
+            font-size: clamp(1.5rem, 5vw, 1.8rem);
             font-weight: bold;
             color: #00d4ff;
         }
         .nav-links {
             list-style: none;
             display: flex;
+            gap: 1.5rem;
         }
         .nav-links li {
-            margin-left: 2rem;
+            margin: 0;
         }
         .nav-links a {
             color: #fff;
             text-decoration: none;
+            font-size: clamp(0.9rem, 3vw, 1rem);
             transition: color 0.3s;
         }
         .nav-links a:hover {
             color: #00d4ff;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #fff;
+            margin: 2px 0;
+            transition: all 0.3s;
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
         }
 
         /* Hero Section */
@@ -67,25 +92,26 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="%23fff" opacity="0.1"/></svg>') repeat; /* Estrelas simples */
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="%23fff" opacity="0.1"/></svg>') repeat;
         }
         .hero h1 {
-            font-size: 4rem;
+            font-size: clamp(2rem, 8vw, 4rem);
             margin-bottom: 1rem;
             color: #00d4ff;
             text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
         }
         .hero p {
-            font-size: 1.5rem;
+            font-size: clamp(1rem, 4vw, 1.5rem);
             margin-bottom: 2rem;
         }
         .btn {
             display: inline-block;
-            padding: 1rem 2rem;
+            padding: 0.8rem 1.5rem;
             background: linear-gradient(45deg, #00d4ff, #0099cc);
             color: #fff;
             text-decoration: none;
             border-radius: 50px;
+            font-size: clamp(0.9rem, 3vw, 1.1rem);
             transition: transform 0.3s, box-shadow 0.3s;
         }
         .btn:hover {
@@ -95,22 +121,22 @@
 
         /* Features */
         .features {
-            padding: 5rem 0;
+            padding: 3rem 0;
         }
         .features h2 {
             text-align: center;
-            font-size: 3rem;
-            margin-bottom: 3rem;
+            font-size: clamp(1.8rem, 6vw, 3rem);
+            margin-bottom: 2rem;
             color: #00d4ff;
         }
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
         }
         .feature-card {
             background: rgba(255, 255, 255, 0.1);
-            padding: 2rem;
+            padding: 1.5rem;
             border-radius: 15px;
             text-align: center;
             backdrop-filter: blur(10px);
@@ -120,37 +146,91 @@
             transform: scale(1.05);
         }
         .feature-card h3 {
-            font-size: 1.5rem;
+            font-size: clamp(1.2rem, 4vw, 1.5rem);
             margin-bottom: 1rem;
             color: #00d4ff;
         }
 
         /* Download Section */
         .download {
-            padding: 5rem 0;
+            padding: 3rem 0;
             text-align: center;
             background: rgba(0, 0, 0, 0.5);
         }
         .download h2 {
-            font-size: 3rem;
-            margin-bottom: 2rem;
+            font-size: clamp(1.8rem, 6vw, 3rem);
+            margin-bottom: 1.5rem;
             color: #00d4ff;
         }
         .download-btn {
-            font-size: 1.2rem;
+            font-size: clamp(0.9rem, 3vw, 1.2rem);
         }
 
         /* Footer */
         footer {
             text-align: center;
-            padding: 2rem 0;
+            padding: 1.5rem 0;
             background: rgba(0, 0, 0, 0.8);
+            font-size: clamp(0.8rem, 2.5vw, 1rem);
         }
 
-        /* Responsivo */
+        /* Media Queries */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .nav-links { display: none; } /* Simplificar mobile */
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.9);
+                padding: 1rem 0;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .nav-links li {
+                margin: 0.5rem 0;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .hero {
+                padding: 0 1rem;
+            }
+            .hero h1 {
+                font-size: clamp(1.8rem, 6vw, 2.5rem);
+            }
+            .hero p {
+                font-size: clamp(0.9rem, 3vw, 1.2rem);
+            }
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 10px;
+            }
+            .hero {
+                height: 80vh;
+            }
+            .btn {
+                padding: 0.6rem 1.2rem;
+            }
+            .feature-card {
+                padding: 1rem;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .container {
+                max-width: 1400px;
+            }
+            .hero h1 {
+                font-size: 5rem;
+            }
         }
     </style>
 </head>
@@ -158,6 +238,11 @@
     <header>
         <nav class="container">
             <div class="logo">Ivanildo</div>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
             <ul class="nav-links">
                 <li><a href="/projetos/">Projetos</a></li>
                 <li><a href="/Curso/">Curso</a></li>
@@ -170,11 +255,11 @@
     <section class="hero">
         <div class="container">
             <h1>Bem-vindo</h1>
-            <p></p>
-            <!--<a href="#download" class="btn">Baixe Agora</a>-->
+           <!-- <p>Explore o universo com Plutão, um sistema leve e poderoso!</p>
+            <a href="#download" class="btn">Baixe Agora</a>
         </div>
     </section>
-<!--
+
     <section id="features" class="features">
         <div class="container">
             <h2>Por Que Escolher Plutão?</h2>
@@ -199,18 +284,18 @@
         <div class="container">
             <h2>Faça o Download Gratuito</h2>
             <p>Versão mais recente: Plutão (ISO de 2GB), esse sistema é rolling release, base Debian</p>
-            <a href="/plutão/iso/" class="btn download-btn" onclick="simularDownload()">Baixar útima iso</a>
+            <a href="/plutão/iso/" class="btn download-btn" onclick="simularDownload()">Baixar última ISO</a>
             <br><br>
             <h2>Faça o Download Gratuito</h2>
-            <p>Versão mais recente: Plutão BSD(ISO de 2GB), esse sistema é rolling release</p>
+            <p>Versão mais recente: Plutão BSD (ISO de 2GB), esse sistema é rolling release</p>
             <p style="margin-top: 1rem; font-size: 0.9rem;">Verifique o checksum após o download.</p>
-            <a href="/plutão/iso/" class="btn download-btn" onclick="simularDownload()">Base freeBSD</a>
-        </div>
-    </section>-->
+            <a href="/plutão/iso/" class="btn download-btn" onclick="simularDownload()">Base FreeBSD</a>
+       --> </div>
+    </section>
 
     <footer>
         <div class="container">
-        <p>&copy; <span id="year"></span> ivanildo.com.br.</p>
+            <p>&copy; <span id="year"></span> ivanildo.com.br.</p>
         </div>
     </footer>
 
@@ -219,10 +304,17 @@
             alert('Download iniciado! Em um site real, isso redirecionaria para o arquivo ISO.');
         }
 
-   function year() {
-        return new Date().getFullYear();
-    }
-    document.getElementById('year').textContent = year();
+        function year() {
+            return new Date().getFullYear();
+        }
+        document.getElementById('year').textContent = year();
+
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            const hamburger = document.querySelector('.hamburger');
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
     </script>
 </body>
 </html>
