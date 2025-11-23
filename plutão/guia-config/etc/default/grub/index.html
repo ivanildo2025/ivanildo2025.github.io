@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia do arquivo /etc/default/grub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .path-correction {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .path-correction h2 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+        
+        .correct-path {
+            font-family: monospace;
+            background-color: #2d3436;
+            color: #dfe6e9;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        
+        .info-section {
+            margin-bottom: 30px;
+        }
+        
+        h2 {
+            color: #3498db;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #3498db;
+        }
+        
+        h3 {
+            color: #2c3e50;
+            margin: 15px 0 10px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        code {
+            background-color: #f8f9fa;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+        }
+        
+        pre {
+            background-color: #2d3436;
+            color: #dfe6e9;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 15px 0;
+            line-height: 1.4;
+        }
+        
+        .command-block {
+            background-color: #2d3436;
+            color: #dfe6e9;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        
+        .warning {
+            background-color: #ffeaa7;
+            border-left: 4px solid #fdcb6e;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .example {
+            background-color: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 1.5em;
+            }
+            
+            h2 {
+                font-size: 1.3em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Guia do arquivo <code>/etc/default/grub</code></h1>
+            <p>Configuração do GRUB Bootloader nos sistemas Plutão</p>
+        </header>
+        
+        <section class="path-correction">
+            <h2>⚠️ Correção do Caminho</h2>
+            <p>O caminho correto para o arquivo de configuração do GRUB é:</p>
+            <div class="correct-path">/etc/default/grub</div>
+            <p>Você digitou "defult" em vez de "default".</p>
+        </section>
+        
+        <section class="info-section">
+            <h2>O que é o arquivo <code>/etc/default/grub</code>?</h2>
+            <p>Este é o arquivo de configuração principal do <strong>GRUB (GRand Unified Bootloader)</strong>, o gerenciador de inicialização padrão na maioria das distribuições Linux.</p>
+            
+            <h3>Funções principais:</h3>
+            <ul>
+                <li>Controla opções de inicialização do sistema</li>
+                <li>Define o tempo de espera (timeout) para seleção do sistema operacional</li>
+                <li>Configura a resolução do menu do GRUB</li>
+                <li>Define parâmetros do kernel passados durante o boot</li>
+                <li>Especifica o sistema operacional padrão a ser iniciado</li>
+            </ul>
+        </section>
+        
+        <section class="info-section">
+            <h2>Comandos úteis para trabalhar com o GRUB</h2>
+            
+            <h3>Editar o arquivo de configuração:</h3>
+            <div class="command-block">
+                sudo nano /etc/default/grub<br>
+                sudo vim /etc/default/grub
+            </div>
+            
+            <h3>Atualizar o GRUB após modificar o arquivo:</h3>
+            <div class="command-block">
+                # No Ubuntu/Debian e derivados:<br>
+                sudo update-grub<br><br>
+                
+                # No Arch Linux, Fedora, RHEL e derivados:<br>
+                sudo grub-mkconfig -o /boot/grub/grub.cfg
+            </div>
+            
+            <h3>Visualizar a configuração atual do GRUB:</h3>
+            <div class="command-block">
+                cat /etc/default/grub
+            </div>
+        </section>
+        
+        <section class="info-section">
+            <h2>Exemplo de conteúdo do arquivo</h2>
+            <p>Aqui está um exemplo típico do conteúdo do arquivo <code>/etc/default/grub</code>:</p>
+            
+            <pre># Configuração do GRUB para sistemas Linux
+
+# Define o sistema operacional padrão (0 = primeiro na lista)
+GRUB_DEFAULT=0
+
+# Tempo de espera para seleção (em segundos)
+GRUB_TIMEOUT=5
+
+# Nome do distribuidor (detectado automaticamente)
+GRUB_DISTRIBUTOR=`lsb_release -i -s 2> /dev/null || echo Debian`
+
+# Parâmetros padrão para o kernel Linux
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"
+
+# Parâmetros adicionais para o kernel Linux
+GRUB_CMDLINE_LINUX=""
+
+# Habilita suporte a temas gráficos
+#GRUB_THEME="/path/to/theme"
+
+# Define a resolução do menu do GRUB
+#GRUB_GFXMODE=1920x1080
+
+# Habilita a memória para sistemas com UEFI
+#GRUB_GFXPAYLOAD_LINUX=keep</pre>
+        </section>
+        
+        <section class="info-section">
+            <h2>Parâmetros comuns e suas funções</h2>
+            
+            <h3><code>GRUB_DEFAULT</code></h3>
+            <p>Define qual entrada do menu será selecionada por padrão. Pode ser um número (0 para a primeira entrada) ou o nome da entrada.</p>
+            
+            <h3><code>GRUB_TIMEOUT</code></h3>
+            <p>Tempo em segundos que o menu do GRUB ficará visível antes de iniciar o sistema padrão.</p>
+            
+            <h3><code>GRUB_CMDLINE_LINUX_DEFAULT</code></h3>
+            <p>Parâmetros adicionais passados ao kernel durante a inicialização. Exemplos comuns:</p>
+            <ul>
+                <li><code>quiet</code> - Reduz a verbosidade durante o boot</li>
+                <li><code>splash</code> - Exibe tela de inicialização gráfica</li>
+                <li><code>nomodeset</code> - Desativa configuração automática de vídeo</li>
+                <li><code>acpi=off</code> - Desativa ACPI (útil para problemas de energia)</li>
+            </ul>
+            
+            <h3><code>GRUB_GFXMODE</code></h3>
+            <p>Define a resolução do menu gráfico do GRUB. Exemplo: <code>1920x1080</code>.</p>
+        </section>
+        
+        <section class="warning">
+            <h2>⚠️ Aviso importante</h2>
+            <p>Após modificar o arquivo <code>/etc/default/grub</code>, <strong>sempre execute o comando de atualização do GRUB</strong> para aplicar as alterações. Caso contrário, as mudanças não terão efeito na próxima inicialização.</p>
+        </section>
+        
+        <section class="example">
+            <h2>Exemplo prático: Alterando o tempo de espera</h2>
+            <p>Para aumentar o tempo de seleção do GRUB para 10 segundos:</p>
+            <ol>
+                <li>Abra o arquivo: <code>sudo nano /etc/default/grub</code></li>
+                <li>Altere a linha: <code>GRUB_TIMEOUT=5</code> para <code>GRUB_TIMEOUT=10</code></li>
+                <li>Salve o arquivo (Ctrl+X, Y, Enter no nano)</li>
+                <li>Atualize o GRUB: <code>sudo update-grub</code></li>
+            </ol>
+        </section>
+        
+        <footer>
+            <p>Guia do GRUB no Plutão - Última atualização: Novembro 2025</p>
+            <p>Lembre-se: Sempre faça backup dos arquivos importantes antes de modificá-los!</p>
+        </footer>
+    </div>
+</body>
+</html>
