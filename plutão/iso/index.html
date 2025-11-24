@@ -3,75 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bonita Plutão Linux - A Distro Bonita e Estelar Baseada em Debian</title>
+    <title>Plutão OS - ISOS </title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(to bottom, #000428, #004e92); /* Fundo espacial escuro */
+            background: linear-gradient(135deg, #000428, #004e92, #2c3e50);
             color: #ffffff;
             margin: 0;
             padding: 0;
             line-height: 1.6;
+            min-height: 100vh;
         }
+        
         header {
-            background: rgba(0, 0, 0, 0.7);
-            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 30px 20px;
             text-align: center;
-            border-bottom: 2px solid #4a90e2;
+            border-bottom: 3px solid #4a90e2;
+            backdrop-filter: blur(10px);
         }
+        
         h1 {
             margin: 0;
-            font-size: 2.5em;
-            text-shadow: 2px 2px 4px #000;
+            font-size: 2.8em;
+            text-shadow: 0 0 20px rgba(74, 144, 226, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
         }
+        
+        .logo {
+            width: 50px;
+            height: 50px;
+            filter: drop-shadow(0 0 10px rgba(74, 144, 226, 0.8));
+        }
+        
         nav {
             background: rgba(255, 255, 255, 0.1);
-            padding: 10px;
+            padding: 15px;
             text-align: center;
+            backdrop-filter: blur(10px);
         }
+        
         nav a {
             color: #ffffff;
             text-decoration: none;
-            margin: 0 15px;
+            margin: 0 20px;
             font-weight: bold;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
         }
+        
         nav a:hover {
-            color: #4a90e2;
+            background: rgba(74, 144, 226, 0.3);
+            transform: translateY(-2px);
         }
+        
         main {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(74, 144, 226, 0.5);
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(74, 144, 226, 0.4);
+            backdrop-filter: blur(10px);
         }
+        
         section {
-            margin-bottom: 30px;
+            margin-bottom: 40px;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border-left: 4px solid #4a90e2;
         }
+        
         h2 {
             color: #4a90e2;
-            border-bottom: 1px solid #ffffff;
-            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
         }
+        
         ul {
             list-style-type: none;
             padding: 0;
         }
+        
         ul li {
-            background: rgba(255, 255, 255, 0.1);
-            margin: 10px 0;
-            padding: 10px;
-            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.08);
+            margin: 12px 0;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid #4a90e2;
+            transition: transform 0.2s ease;
         }
+        
+        ul li:hover {
+            transform: translateX(5px);
+            background: rgba(255, 255, 255, 0.12);
+        }
+        
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .download-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .download-card:hover {
+            transform: translateY(-5px);
+            border-color: #4a90e2;
+            box-shadow: 0 10px 25px rgba(74, 144, 226, 0.3);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #4a90e2, #357abd);
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            margin: 10px 5px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: linear-gradient(135deg, #357abd, #4a90e2);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(74, 144, 226, 0.4);
+        }
+        
         footer {
             text-align: center;
-            padding: 10px;
-            background: rgba(0, 0, 0, 0.7);
-            position: fixed;
-            width: 100%;
-            bottom: 0;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            margin-top: 40px;
+            border-top: 1px solid rgba(74, 144, 226, 0.3);
         }
+        
         .estrelas {
             position: fixed;
             top: 0;
@@ -79,27 +169,51 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            background-image: 
-                radial-gradient(2px 2px at 20px 30px, #eee, transparent),
-                radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
-                radial-gradient(1px 1px at 90px 40px, #fff, transparent),
-                radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent),
-                /* Mais estrelas... */
-            background-repeat: repeat;
-            background-size: 200px 100px;
-            animation: twinkle 3s infinite;
+            z-index: -1;
         }
+        
+        .estrela {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle linear infinite;
+        }
+        
         @keyframes twinkle {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+                flex-direction: column;
+            }
+            
+            nav a {
+                display: block;
+                margin: 5px 0;
+            }
+            
+            main {
+                padding: 20px;
+                margin: 20px 15px;
+            }
+            
+            .download-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="estrelas"></div>
+    <div class="estrelas" id="estrelas"></div>
+    
     <header>
-        <h1><img src="/plutão/img/icone-iniciar.png" width="40">Plutão</h1>
-        <p></p>
+        <h1>
+            <span>🚀 Plutão Linux</span>
+        </h1>
+        <p>Sua jornada estelar começa aqui</p>
     </header>
     
     <nav>
@@ -107,48 +221,109 @@
         <a href="#recursos">Recursos</a>
         <a href="#download">Download</a>
         <a href="#comunidade">Comunidade</a>
+        <a href="#faq">FAQ</a>
     </nav>
     
     <main>
         <section id="inicio">
-            <h2>Bem-vindo à Plutão </h2>
-            <p>A <strong> Plutão</strong> é uma distribuição, construída sobre a rocha estável do <strong>Debian 13 (Trixie)</strong>. Inspirada no misterioso planeta anão Plutão, feitas para desktops, laptops e até setups de comecializados, do nossa loja.</p>
-            <p></p>
+            <h2>Bem-vindo ao Plutão Linux</h2>
+            <p>A <strong>Plutão Linux</strong> é uma distribuição moderna, construída sobre a base estável do <strong>Debian 13 (Trixie)</strong>. Inspirada no misterioso planeta anão Plutão, é feita para desktops, laptops e setups comerciais da nossa loja.</p>
+            <p>Experimente a combinação perfeita entre estabilidade, performance e um visual estelar!</p>
         </section>
         
         <section id="recursos">
-            <h2>Principais Recursos</h2>
+            <h2>🌟 Recursos Principais</h2>
             <ul>
                 <li><strong>Base Debian Estável:</strong> Herda a estabilidade e o vasto repositório de pacotes do Debian, com suporte a APT e .deb.</li>
-                <li><strong>Interface Visualmente Incrível:</strong> KDE Plasma para quem prefere customização.</li>
-                <li><strong>Leve e Rápida:</strong> Otimizada para hardware antigo ou novo, com consumo mínimo de RAM (inicia em ~500MB).</li>
-                <li><strong>Ferramentas Pré-instaladas:</strong> Inclui Flatpak, Snap e Homebrew. Perfeita para devs com Git, VS Code e Docker.</li>
-                <li><strong>Segurança Espacial:</strong> Firewall configurado por padrão, atualizações automáticas e criptografia de disco fácil de ativar.</li>
-                
+                <li><strong>Interface Visualmente Incrível:</strong> KDE Plasma altamente personalizado com tema espacial exclusivo.</li>
+                <li><strong>Leve e Rápida:</strong> Otimizada para hardware antigo ou novo, consumo mínimo de recursos.</li>
+                <li><strong>Ferramentas Desenvolvedor:</strong> Git, VS Code, Docker e suporte a Flatpak/Snap integrados.</li>
+                <li><strong>Segurança Avançada:</strong> Firewall configurado, atualizações automáticas e criptografia fácil.</li>
+                <li><strong>Suporte Multi-arquitetura:</strong> x86_64, ARM64 e suporte experimental a RISC-V.</li>
             </ul>
         </section>
         
         <section id="download">
-            <h2>Baixe Agora!</h2>
-            <p>Versão atual: <strong>1.0 Plutão Edition</strong> (ISO de 2.5GB).</p>
-            <p><a href="#" style="background: #4a90e2; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Download ISO (Fictício - Link para Debian como Base)</a></p>
-            <p><small>Verifique o SHA256: abc123... (Em produção, usamos um hash real! Para testar, baixe o Debian e aplique nossos temas.)</small></p>
-            <p>Instruções de instalação: Grave a ISO em um pendrive com Rufus ou dd, boot e siga o wizard simples. Tempo médio: 15 minutos.</p>
+            <h2>📥 Download</h2>
+            <p><strong>Versão atual:</strong> Plutão Edition 1.0 (Pré-Alfa)</p>
+            
+            <div class="download-grid">
+                <div class="download-card">
+                    <h3>💼 Desktop Corporativo</h3>
+                    <p>Baseado em Debian - Estabilidade máxima</p>
+                    <a href="./begin/" class="btn">Escolher Base Debian</a>
+                </div>
+                
+                <div class="download-card">
+                    <h3>🎯 Desktop Pessoal</h3>
+                    <p>Baseado em Fedora - Tecnologia de ponta</p>
+                    <a href="./begin/" class="btn">Escolher Base Fedora</a>
+                </div>
+                
+                <div class="download-card">
+                    <h3>🔧 Hardware Específico</h3>
+                    <p>Baseado em FreeBSD - Performance avançada</p>
+                    <a href="./begin/" class="btn">Escolher Base FreeBSD</a>
+                </div>
+            </div>
+            
+            <div style="margin-top: 20px; padding: 15px; background: rgba(255,255,255,0.1); border-radius: 8px;">
+                <strong>⚠️ Nota:</strong> Versão pré-alfa em desenvolvimento. Para testar, escolha sua base preferida e converta usando nossos scripts.
+            </div>
         </section>
         
         <section id="comunidade">
-            <h2>Junte-se à Comunidade</h2>
-            <p>Estamos construindo isso juntos! Participe do fórum fictício no Reddit (r/BonitaPlutao) ou contribua no GitHub.</p>
-            <p><a href="#" style="background: #4a90e2; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Fórum</a> | <a href="#" style="background: #4a90e2; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">GitHub Repo</a></p>
+            <h2>👥 Junte-se à Comunidade</h2>
+            <p>Estamos construindo essa distro juntos! Participe da nossa comunidade:</p>
+            <div style="margin: 20px 0;">
+                <a href="#" class="btn">📚 Fórum</a>
+                <a href="#" class="btn">💻 GitHub</a>
+                <a href="#" class="btn">💬 Discord</a>
+            </div>
+        </section>
+        
+        <section id="faq">
+            <h2>❓ Perguntas Frequentes</h2>
+            <p>Encontrou problemas? Consulte nosso FAQ:</p>
+            <a href="./faq/" class="btn">Acessar FAQ</a>
         </section>
     </main>
     
     <footer>
-        <p>&copy; <span id="year"></span> Plutão. Distro open-source. Licença MIT.</p>
+        <p>&copy; <span id="year"></span> Plutão Linux. Distribuição open-source sob licença MIT.</p>
     </footer>
-    <script> function year() {
-        return new Date().getFullYear();
-    }
-    document.getElementById('year').textContent = year();</script>
+
+    <script>
+        // Ano atual no footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+        
+        // Criar estrelas dinâmicas
+        function criarEstrelas() {
+            const estrelas = document.getElementById('estrelas');
+            const numEstrelas = 150;
+            
+            for (let i = 0; i < numEstrelas; i++) {
+                const estrela = document.createElement('div');
+                estrela.className = 'estrela';
+                
+                // Tamanho aleatório entre 1-3px
+                const size = Math.random() * 2 + 1;
+                estrela.style.width = `${size}px`;
+                estrela.style.height = `${size}px`;
+                
+                // Posição aleatória
+                estrela.style.left = `${Math.random() * 100}vw`;
+                estrela.style.top = `${Math.random() * 100}vh`;
+                
+                // Duração da animação aleatória
+                const duration = Math.random() * 5 + 3;
+                estrela.style.animationDuration = `${duration}s`;
+                
+                estrelas.appendChild(estrela);
+            }
+        }
+        
+        criarEstrelas();
+    </script>
 </body>
 </html>
