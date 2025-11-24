@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plutão</title>
+    <title>Plutão OS - Distribuição Linux Estelar</title>
     <link rel="icon" type="image/png" sizes="32x32" href="/plutão/img/icone-iniciar.png">
     <style>
         /* Reset e Estilos Gerais */
@@ -12,13 +12,25 @@
             padding: 0;
             box-sizing: border-box;
         }
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #0c0c0c, #1a1a2e, #16213e);
-            color: #fff;
+        
+        :root {
+            --primary: #00d4ff;
+            --primary-dark: #0099cc;
+            --bg-dark: #0c0c0c;
+            --bg-darker: #050505;
+            --text-light: #ffffff;
+            --text-gray: #b0b0b0;
         }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-light);
+            background: linear-gradient(135deg, var(--bg-darker), var(--bg-dark), #16213e);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -27,38 +39,80 @@
 
         /* Header */
         header {
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(10, 10, 15, 0.95);
             padding: 1rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+            transition: all 0.3s ease;
         }
+        
+        header.scrolled {
+            padding: 0.7rem 0;
+            background: rgba(5, 5, 10, 0.98);
+        }
+        
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
+        
         .logo {
             font-size: 1.8rem;
             font-weight: bold;
-            color: #00d4ff;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
+        
+        .logo img {
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover img {
+            transform: rotate(15deg);
+        }
+        
         .nav-links {
             list-style: none;
             display: flex;
+            gap: 2rem;
         }
-        .nav-links li {
-            margin-left: 2rem;
-        }
+        
         .nav-links a {
-            color: #fff;
+            color: var(--text-light);
             text-decoration: none;
-            transition: color 0.3s;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
         }
+        
         .nav-links a:hover {
-            color: #00d4ff;
+            color: var(--primary);
+            background: rgba(0, 212, 255, 0.1);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        
+        .nav-links a:hover::after {
+            width: 80%;
         }
 
         /* Hero Section */
@@ -68,131 +122,369 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="%23fff" opacity="0.1"/></svg>') repeat; /* Estrelas simples */
+            position: relative;
+            overflow: hidden;
         }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 212, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(0, 212, 255, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+        
         .hero h1 {
             font-size: 4rem;
-            margin-bottom: 1rem;
-            color: #00d4ff;
-            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            text-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+            background: linear-gradient(135deg, var(--primary), #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
+        
         .hero p {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
+            font-size: 1.4rem;
+            margin-bottom: 2.5rem;
+            color: var(--text-gray);
+            line-height: 1.8;
         }
+        
         .btn {
             display: inline-block;
-            padding: 1rem 2rem;
-            background: linear-gradient(45deg, #00d4ff, #0099cc);
-            color: #fff;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(45deg, var(--primary), var(--primary-dark));
+            color: var(--text-light);
             text-decoration: none;
             border-radius: 50px;
-            transition: transform 0.3s, box-shadow 0.3s;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
         }
+        
         .btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 212, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.5);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary);
+            margin-left: 1rem;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(0, 212, 255, 0.1);
         }
 
         /* Features */
         .features {
-            padding: 5rem 0;
+            padding: 6rem 0;
+            background: rgba(5, 5, 10, 0.7);
         }
+        
         .features h2 {
             text-align: center;
             font-size: 3rem;
-            margin-bottom: 3rem;
-            color: #00d4ff;
+            margin-bottom: 4rem;
+            color: var(--primary);
         }
+        
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            gap: 2.5rem;
         }
+        
         .feature-card {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 2rem;
-            border-radius: 15px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
             text-align: center;
             backdrop-filter: blur(10px);
-            transition: transform 0.3s;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
         }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .feature-card:hover::before {
+            left: 100%;
+        }
+        
         .feature-card:hover {
-            transform: scale(1.05);
+            transform: translateY(-10px);
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
         }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
         .feature-card h3 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
-            color: #00d4ff;
+            color: var(--primary);
+        }
+        
+        .feature-card p {
+            color: var(--text-gray);
+            line-height: 1.7;
         }
 
         /* Download Section */
         .download {
-            padding: 5rem 0;
+            padding: 6rem 0;
             text-align: center;
-            background: rgba(0, 0, 0, 0.5);
+            background: linear-gradient(135deg, rgba(10, 10, 20, 0.9), rgba(5, 5, 15, 0.9));
+            position: relative;
         }
+        
+        .download::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="%2300d4ff" opacity="0.3"/><circle cx="50" cy="80" r="1" fill="%2300d4ff" opacity="0.2"/><circle cx="80" cy="40" r="1" fill="%2300d4ff" opacity="0.4"/></svg>');
+            pointer-events: none;
+        }
+        
         .download h2 {
             font-size: 3rem;
-            margin-bottom: 2rem;
-            color: #00d4ff;
+            margin-bottom: 1rem;
+            color: var(--primary);
         }
-        .download-btn {
+        
+        .download-subtitle {
             font-size: 1.2rem;
+            color: var(--text-gray);
+            margin-bottom: 3rem;
         }
+        
+        .download-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .download-option {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .download-option:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        .download-option h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .version-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--bg-dark);
+            padding: 0.3rem 1rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        .debian-badge { background: #A81D33; }
+        .fedora-badge { background: #294172; }
+        .freebsd-badge { background: #AB2B28; }
 
         /* Footer */
         footer {
             text-align: center;
-            padding: 2rem 0;
-            background: rgba(0, 0, 0, 0.8);
+            padding: 3rem 0;
+            background: rgba(0, 0, 0, 0.9);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .footer-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Estrelas Animadas */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle linear infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
         }
 
         /* Responsivo */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .nav-links { display: none; } /* Simplificar mobile */
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .btn-group {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .btn-secondary {
+                margin-left: 0;
+            }
+            
+            .features h2,
+            .download h2 {
+                font-size: 2.2rem;
+            }
+            
+            .download-options {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Menu Mobile */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
         }
     </style>
 </head>
 <body>
-    <header>
+    <div class="stars" id="stars"></div>
+    
+    <header id="header">
         <nav class="container">
-            <div class="logo"><img src="/plutão/img/icone-iniciar.png" width="40"> Plutão</div>
+            <div class="logo">
+                <img src="/plutão/img/icone-iniciar.png" width="40" alt="Plutão OS">
+                Plutão OS
+            </div>
             <ul class="nav-links">
                 <li><a href="/suporte/">Suporte</a></li>
                 <li><a href="/plutão/faq/">FAQ</a></li>
-                 <li><a href="/plutão/guia-config/">CONFIG</a></li>
+                <li><a href="/plutão/guia-config/">CONFIG</a></li>
                 <li><a href="#features">Recursos</a></li>
                 <li><a href="#download">Download</a></li>
                 <li><a href="#about">Sobre</a></li>
             </ul>
+            <button class="mobile-menu-btn">☰</button>
         </nav>
     </header>
 
     <section class="hero">
         <div class="container">
-            <h1>Bem-vindo ao Plutão</h1>
-            <p>Essa distro é  baseada no Debian ou no freeBSD, por padrão o debian e o link principal, pois tem mais recursos. Estável, rápida e pronta para o uso!</p>
-            <a href="#download" class="btn">Baixe Agora</a>
+            <div class="hero-content">
+                <h1>Explore o Universo Plutão</h1>
+                <p>Uma distribuição moderna baseada no Debian, Fedora e FreeBSD, combinando estabilidade, performance e um design estelar único. Perfeita para desktops, laptops e uso corporativo.</p>
+                <div class="btn-group">
+                    <a href="#download" class="btn">Baixar Agora</a>
+                    <a href="#features" class="btn btn-secondary">Conhecer Recursos</a>
+                </div>
+            </div>
         </div>
     </section>
 
     <section id="features" class="features">
         <div class="container">
-            <h2>Por Que Escolher Plutão?</h2>
+            <h2>Por Que Escolher o Plutão?</h2>
             <div class="grid">
                 <div class="feature-card">
-                    <h3>Base Debian</h3>
-                    <p>Herda a estabilidade e vastos repositórios do Debian, com atualizações seguras e confiáveis.</p>
+                    <div class="feature-icon">🚀</div>
+                    <h3>Multi-Base</h3>
+                    <p>Disponível nas bases Debian, Fedora e FreeBSD. Escolha a que melhor se adapta às suas necessidades.</p>
                 </div>
                 <div class="feature-card">
-                    <h3>Interface Amigável</h3>
-                    <p>Ambiente desktop leve e customizável, inspirado em temas espaciais para uma experiência fluida.</p>
+                    <div class="feature-icon">✨</div>
+                    <h3>Interface Espacial</h3>
+                    <p>Ambiente desktop leve e customizável com temas inspirados no espaço sideral para uma experiência imersiva.</p>
                 </div>
                 <div class="feature-card">
-                    <h3>Bom Desempenho</h3>
-                    <p>Otimizada para hardware antigo e novo, com suporte a GPUs e drivers open-source.</p>
+                    <div class="feature-icon">⚡</div>
+                    <h3>Alta Performance</h3>
+                    <p>Otimizada para hardware antigo e moderno, com suporte a GPUs e drivers open-source de última geração.</p>
                 </div>
             </div>
         </div>
@@ -200,32 +492,124 @@
 
     <section id="download" class="download">
         <div class="container">
-            <h2>Faça o Download Gratuito</h2>
-            <p>Versão mais recente: Plutão (ISO de 2GB), esse sistema é rolling release, base Debian</p>
-            <a href="/plutão/iso/" class="btn download-btn" onclick="simularDownload()">Baixar útima iso</a>
-            <br><br>
-            <h2>Faça o Download Gratuito</h2>
-            <p>Versão mais recente: Plutão BSD(ISO de 2GB), esse sistema é rolling release</p>
-            <p style="margin-top: 1rem; font-size: 0.9rem;">Verifique o checksum após o download.</p>
-            <a href="/plutão/iso/" class="btn download-btn" onclick="simularDownload()">Base freeBSD</a>
+            <h2>Faça o Download</h2>
+            <p class="download-subtitle">Escolha a base ideal para suas necessidades</p>
+            
+            <div class="download-options">
+                <div class="download-option">
+                    <span class="version-badge debian-badge">DEBIAN</span>
+                    <h3>Plutão Debian Edition</h3>
+                    <p>Estabilidade comprovada e vastos repositórios</p>
+                    <p><strong>Tamanho:</strong> ~2.1 GB</p>
+                    <p><em>Ideal para: Uso geral e corporativo</em></p>
+                    <a href="/plutão/begin/" class="btn" style="margin-top: 1rem;">Escolher Base Debian</a>
+                </div>
+                
+                <div class="download-option">
+                    <span class="version-badge fedora-badge">FEDORA</span>
+                    <h3>Plutão Fedora Edition</h3>
+                    <p>Tecnologia de ponta e atualizações frequentes</p>
+                    <p><strong>Tamanho:</strong> ~2.3 GB</p>
+                    <p><em>Ideal para: Desenvolvedores e entusiastas</em></p>
+                    <a href="/plutão/begin/" class="btn" style="margin-top: 1rem;">Escolher Base Fedora</a>
+                </div>
+                
+                <div class="download-option">
+                    <span class="version-badge freebsd-badge">FREEBSD</span>
+                    <h3>Plutão BSD Edition</h3>
+                    <p>Performance avançada e segurança robusta</p>
+                    <p><strong>Tamanho:</strong> ~1.8 GB</p>
+                    <p><em>Ideal para: Servidores e uso avançado</em></p>
+                    <a href="/plutão/begin/" class="btn" style="margin-top: 1rem;">Escolher Base FreeBSD</a>
+                </div>
+            </div>
+            
+            <p style="margin-top: 2rem; color: var(--text-gray); font-size: 0.9rem;">
+                <strong>Nota:</strong> Todas as versões compartilham a mesma interface e aplicações, diferenciando-se apenas na base do sistema.
+            </p>
         </div>
     </section>
 
     <footer>
         <div class="container">
-        <p>&copy; <span id="year"></span> Plutão. Distro open-source. Licença MIT.</p>
+            <div class="logo" style="justify-content: center; margin-bottom: 1rem;">
+                <img src="/plutão/img/icone-iniciar.png" width="30" alt="Plutão OS">
+                Plutão OS
+            </div>
+            <div class="footer-links">
+                <a href="/suporte/">Suporte</a>
+                <a href="/plutão/faq/">FAQ</a>
+                <a href="/plutão/guia-config/">Configuração</a>
+                <a href="#privacy">Privacidade</a>
+                <a href="#terms">Termos</a>
+            </div>
+            <p>&copy; <span id="year"></span> Plutão OS. Distribuição open-source sob licença MIT.</p>
         </div>
     </footer>
 
     <script>
-        function simularDownload() {
-            alert('Download iniciado! Em um site real, isso redirecionaria para o arquivo ISO.');
+        // Ano atual
+        document.getElementById('year').textContent = new Date().getFullYear();
+        
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Criar estrelas
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const starCount = 200;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                // Tamanho aleatório
+                const size = Math.random() * 2 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                
+                // Posição aleatória
+                star.style.left = `${Math.random() * 100}vw`;
+                star.style.top = `${Math.random() * 100}vh`;
+                
+                // Animação aleatória
+                const duration = Math.random() * 6 + 2;
+                const delay = Math.random() * 5;
+                star.style.animationDuration = `${duration}s`;
+                star.style.animationDelay = `${delay}s`;
+                
+                starsContainer.appendChild(star);
+            }
         }
-
-   function year() {
-        return new Date().getFullYear();
-    }
-    document.getElementById('year').textContent = year();
+        
+        createStars();
+        
+        // Smooth scroll para links internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Menu mobile (simplificado)
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            alert('Menu mobile - Em desenvolvimento');
+            // implementar um menu mobile dropdown
+        });
     </script>
 </body>
 </html>
