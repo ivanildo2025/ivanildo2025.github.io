@@ -1,17 +1,199 @@
 
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>FAQ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Plutão OS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            max-width: 800px;
+            width: 100%;
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            font-weight: 300;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .faq-item {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 5px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .question {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .question::before {
+            content: "❓";
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        .answer {
+            color: #555;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            color: #856404;
+        }
+
+        .warning strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .status-badge {
+            display: inline-block;
+            background: #dc3545;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #666;
+            font-size: 0.9em;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px 20px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .question {
+                font-size: 1.1em;
+            }
+            
+            .answer {
+                font-size: 1em;
+            }
+        }
+    </style>
 </head>
 <body>
-   <h1>FAQ</h1>
-Pq não tá baixando ISOs?
-Estou com problemas em coda, as versões não estão boas veja os 
-Scripts de putanização da base <a href="./begin/">Escolha a verção base e converta</a><br>
-versão pre alfa estanhos com problemas. (meus códigos são ruins)
-
-    
+    <div class="container">
+        <h1>Perguntas Frequentes</h1>
+        
+        <div class="faq-item">
+            <div class="question">
+                Por que não está baixando ISOs?
+                <span class="status-badge">Problema Conhecido</span>
+            </div>
+            <div class="answer">
+                Estou enfrentando problemas com a codificação atual. As versões disponíveis não estão 
+                funcionando corretamente devido a erros nos scripts de preparação da base.
+            </div>
+            
+            <div class="warning">
+                <strong>⚠️ Solução Temporária:</strong>
+                Você pode converter manualmente as bases disponíveis usando nossos scripts de preparação.
+            </div>
+            
+            <a href="./begin/" class="btn">
+                🛠️ Escolher Versão Base e Converter
+            </a>
+        </div>
+        
+        <div class="faq-item">
+            <div class="question">Status do Projeto</div>
+            <div class="answer">
+                Atualmente estamos na <strong>versão pré-alfa</strong> e enfrentando problemas de estabilidade. 
+                Estou trabalhando para melhorar a qualidade do código e resolver os problemas existentes.
+            </div>
+            
+            <div class="warning">
+                <strong>💡 Nota do Desenvolvedor:</strong>
+                Reconheço que há problemas no código atual e estou trabalhando ativamente para melhorá-los. 
+                Agradeço pela paciência e compreensão durante esta fase de desenvolvimento.
+            </div>
+        </div>
+        
+        <div class="footer">
+            Plutão OS - Em desenvolvimento ativo • Versão Pré-Alfa
+        </div>
+    </div>
 </body>
 </html>
