@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plutão OS - Distribuição Linux Estelar</title>
+    <title>Plutão OS - Distribuição Linux Estelar com KDE Plasma</title>
     <link rel="icon" type="image/png" sizes="32x32" href="/plutão/img/icone-iniciar.png">
     <style>
         /* Reset e Estilos Gerais */
@@ -16,6 +16,7 @@
         :root {
             --primary: #00d4ff;
             --primary-dark: #0099cc;
+            --kde-blue: #1d99f3;
             --bg-dark: #0c0c0c;
             --bg-darker: #050505;
             --text-light: #ffffff;
@@ -134,9 +135,9 @@
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 20% 50%, rgba(29, 153, 243, 0.1) 0%, transparent 50%),
                 radial-gradient(circle at 80% 20%, rgba(0, 212, 255, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 40% 80%, rgba(0, 212, 255, 0.08) 0%, transparent 50%);
+                radial-gradient(circle at 40% 80%, rgba(29, 153, 243, 0.08) 0%, transparent 50%);
             pointer-events: none;
         }
         
@@ -151,7 +152,7 @@
             margin-bottom: 1.5rem;
             color: var(--primary);
             text-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
-            background: linear-gradient(135deg, var(--primary), #ffffff);
+            background: linear-gradient(135deg, var(--primary), var(--kde-blue));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -162,6 +163,17 @@
             margin-bottom: 2.5rem;
             color: var(--text-gray);
             line-height: 1.8;
+        }
+        
+        .kde-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--kde-blue), #1d5ff3);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            margin: 1rem 0;
+            box-shadow: 0 5px 15px rgba(29, 153, 243, 0.3);
         }
         
         .btn {
@@ -182,6 +194,15 @@
         .btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(0, 212, 255, 0.5);
+        }
+        
+        .btn-kde {
+            background: linear-gradient(45deg, var(--kde-blue), #1d5ff3);
+            box-shadow: 0 5px 15px rgba(29, 153, 243, 0.3);
+        }
+        
+        .btn-kde:hover {
+            box-shadow: 0 10px 25px rgba(29, 153, 243, 0.5);
         }
         
         .btn-secondary {
@@ -232,7 +253,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+            background: linear-gradient(90deg, transparent, rgba(29, 153, 243, 0.1), transparent);
             transition: left 0.5s ease;
         }
         
@@ -242,7 +263,7 @@
         
         .feature-card:hover {
             transform: translateY(-10px);
-            border-color: rgba(0, 212, 255, 0.3);
+            border-color: rgba(29, 153, 243, 0.3);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
         }
         
@@ -252,10 +273,18 @@
             color: var(--primary);
         }
         
+        .kde-icon {
+            color: var(--kde-blue);
+        }
+        
         .feature-card h3 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
             color: var(--primary);
+        }
+        
+        .kde-feature h3 {
+            color: var(--kde-blue);
         }
         
         .feature-card p {
@@ -278,7 +307,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="%2300d4ff" opacity="0.3"/><circle cx="50" cy="80" r="1" fill="%2300d4ff" opacity="0.2"/><circle cx="80" cy="40" r="1" fill="%2300d4ff" opacity="0.4"/></svg>');
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="%231d99f3" opacity="0.3"/><circle cx="50" cy="80" r="1" fill="%2300d4ff" opacity="0.2"/><circle cx="80" cy="40" r="1" fill="%231d99f3" opacity="0.4"/></svg>');
             pointer-events: none;
         }
         
@@ -317,6 +346,15 @@
         .download-option h3 {
             color: var(--primary);
             margin-bottom: 1rem;
+        }
+        
+        .kde-note {
+            background: rgba(29, 153, 243, 0.1);
+            border: 1px solid rgba(29, 153, 243, 0.3);
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            color: var(--text-light);
         }
         
         .version-badge {
@@ -458,9 +496,14 @@
         <div class="container">
             <div class="hero-content">
                 <h1>Explore o Universo Plutão</h1>
-                <p>Uma distribuição moderna baseada no Debian, Fedora e FreeBSD, combinando estabilidade, performance e um design estelar único. Perfeita para desktops, laptops e uso corporativo.</p>
+                <p>Uma distribuição moderna com <strong>KDE Plasma</strong>, disponível nas bases Debian, Fedora e FreeBSD. Combina estabilidade, performance e um design estelar único.</p>
+                
+                <div class="kde-badge">
+                    🚀 Interface KDE Plasma Personalizada
+                </div>
+                
                 <div class="btn-group">
-                    <a href="#download" class="btn">Baixar Agora</a>
+                    <a href="#download" class="btn btn-kde">Baixar Agora</a>
                     <a href="#features" class="btn btn-secondary">Conhecer Recursos</a>
                 </div>
             </div>
@@ -471,16 +514,18 @@
         <div class="container">
             <h2>Por Que Escolher o Plutão?</h2>
             <div class="grid">
+                <div class="feature-card kde-feature">
+                    <div class="feature-icon kde-icon">🎨</div>
+                    <h3>KDE Plasma Completo</h3>
+                    <p>Interface moderna e altamente customizável com o KDE Plasma, incluindo temas exclusivos, efeitos visuais e ferramentas de produtividade.</p>
+                </div>
+                
                 <div class="feature-card">
-                    <div class="feature-icon">🚀</div>
+                    <div class="feature-icon">🔄</div>
                     <h3>Multi-Base</h3>
                     <p>Disponível nas bases Debian, Fedora e FreeBSD. Escolha a que melhor se adapta às suas necessidades.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">✨</div>
-                    <h3>Interface Espacial</h3>
-                    <p>Ambiente desktop leve e customizável com temas inspirados no espaço sideral para uma experiência imersiva.</p>
-                </div>
+                
                 <div class="feature-card">
                     <div class="feature-icon">⚡</div>
                     <h3>Alta Performance</h3>
@@ -493,7 +538,11 @@
     <section id="download" class="download">
         <div class="container">
             <h2>Faça o Download</h2>
-            <p class="download-subtitle">Escolha a base ideal para suas necessidades</p>
+            <p class="download-subtitle">Escolha sua base preferida - Todas incluem KDE Plasma</p>
+            
+            <div class="kde-note">
+                <strong>✨ Todas as versões incluem:</strong> KDE Plasma personalizado, suite de aplicações KDE, temas exclusivos Plutão e ferramentas de produtividade.
+            </div>
             
             <div class="download-options">
                 <div class="download-option">
@@ -502,7 +551,7 @@
                     <p>Estabilidade comprovada e vastos repositórios</p>
                     <p><strong>Tamanho:</strong> ~2.1 GB</p>
                     <p><em>Ideal para: Uso geral e corporativo</em></p>
-                    <a href="/plutão/begin/" class="btn" style="margin-top: 1rem;">Escolher Base Debian</a>
+                    <a href="/plutão/begin/" class="btn btn-kde" style="margin-top: 1rem;">Escolher Base Debian</a>
                 </div>
                 
                 <div class="download-option">
@@ -511,7 +560,7 @@
                     <p>Tecnologia de ponta e atualizações frequentes</p>
                     <p><strong>Tamanho:</strong> ~2.3 GB</p>
                     <p><em>Ideal para: Desenvolvedores e entusiastas</em></p>
-                    <a href="/plutão/begin/" class="btn" style="margin-top: 1rem;">Escolher Base Fedora</a>
+                    <a href="/plutão/begin/" class="btn btn-kde" style="margin-top: 1rem;">Escolher Base Fedora</a>
                 </div>
                 
                 <div class="download-option">
@@ -520,12 +569,12 @@
                     <p>Performance avançada e segurança robusta</p>
                     <p><strong>Tamanho:</strong> ~1.8 GB</p>
                     <p><em>Ideal para: Servidores e uso avançado</em></p>
-                    <a href="/plutão/begin/" class="btn" style="margin-top: 1rem;">Escolher Base FreeBSD</a>
+                    <a href="/plutão/begin/" class="btn btn-kde" style="margin-top: 1rem;">Escolher Base FreeBSD</a>
                 </div>
             </div>
             
             <p style="margin-top: 2rem; color: var(--text-gray); font-size: 0.9rem;">
-                <strong>Nota:</strong> Todas as versões compartilham a mesma interface e aplicações, diferenciando-se apenas na base do sistema.
+                <strong>Nota:</strong> Todas as versões compartilham o mesmo KDE Plasma personalizado, diferenciando-se apenas na base do sistema.
             </p>
         </div>
     </section>
@@ -534,16 +583,16 @@
         <div class="container">
             <div class="logo" style="justify-content: center; margin-bottom: 1rem;">
                 <img src="/plutão/img/icone-iniciar.png" width="30" alt="Plutão OS">
-                Plutão OS
+                Plutão OS com KDE Plasma
             </div>
             <div class="footer-links">
                 <a href="/suporte/">Suporte</a>
                 <a href="/plutão/faq/">FAQ</a>
-                <a href="/plutão/guia-config/">Configuração</a>
+                <a href="/plutão/guia-config/">Configuração KDE</a>
                 <a href="#privacy">Privacidade</a>
                 <a href="#terms">Termos</a>
             </div>
-            <p>&copy; <span id="year"></span> Plutão OS. Distribuição open-source sob licença MIT.</p>
+            <p>&copy; <span id="year"></span> Plutão OS. Distribuição com KDE Plasma sob licença MIT.</p>
         </div>
     </footer>
 
@@ -608,7 +657,7 @@
         // Menu mobile (simplificado)
         document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
             alert('Menu mobile - Em desenvolvimento');
-            // implementar um menu mobile dropdown
+            // Aqui você pode implementar um menu mobile dropdown
         });
     </script>
 </body>
