@@ -3,318 +3,292 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plutão</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="/plutão/img/icone-iniciar.png">
+    <title>Página Inicial</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
-        /* Reset e Estilos Gerais */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
         body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #fff;
-            background: linear-gradient(135deg, #0c0c0c, #1a1a2e, #16213e);
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-
-        /* Header */
-        header {
-            background: rgba(0, 0, 0, 0.8);
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-        }
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo {
-            font-size: clamp(1.5rem, 5vw, 1.8rem);
-            font-weight: bold;
-            color: #00d4ff;
-        }
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 1.5rem;
-        }
-        .nav-links li {
+            text-align: center;
+            font-family: Arial, sans-serif;
             margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
         }
-        .nav-links a {
-            color: #fff;
+        
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        nav {
+            margin-top: 10px;
+        }
+        
+        nav a {
+            color: white;
             text-decoration: none;
-            font-size: clamp(0.9rem, 3vw, 1rem);
+            margin: 0 15px;
+            font-weight: bold;
             transition: color 0.3s;
         }
-        .nav-links a:hover {
-            color: #00d4ff;
+        
+        nav a:hover {
+            color: #4CAF50;
+            text-decoration: underline;
         }
-
-        /* Hamburger Menu */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
+        
+        main {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 0 auto;
         }
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background: #fff;
-            margin: 2px 0;
-            transition: all 0.3s;
-        }
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -7px);
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="%23fff" opacity="0.1"/></svg>') repeat;
-        }
-        .hero h1 {
-            font-size: clamp(2rem, 8vw, 4rem);
-            margin-bottom: 1rem;
-            color: #00d4ff;
-            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
-        }
-        .hero p {
-            font-size: clamp(1rem, 4vw, 1.5rem);
-            margin-bottom: 2rem;
-        }
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 1.5rem;
-            background: linear-gradient(45deg, #00d4ff, #0099cc);
-            color: #fff;
-            text-decoration: none;
-            border-radius: 50px;
-            font-size: clamp(0.9rem, 3vw, 1.1rem);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 212, 255, 0.3);
-        }
-
-        /* Features */
-        .features {
-            padding: 3rem 0;
-        }
-        .features h2 {
-            text-align: center;
-            font-size: clamp(1.8rem, 6vw, 3rem);
-            margin-bottom: 2rem;
-            color: #00d4ff;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-        }
-        .feature-card {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 1.5rem;
-            border-radius: 15px;
-            text-align: center;
-            backdrop-filter: blur(10px);
-            transition: transform 0.3s;
-        }
-        .feature-card:hover {
-            transform: scale(1.05);
-        }
-        .feature-card h3 {
-            font-size: clamp(1.2rem, 4vw, 1.5rem);
-            margin-bottom: 1rem;
-            color: #00d4ff;
-        }
-
-        /* Download Section */
-        .download {
-            padding: 3rem 0;
-            text-align: center;
-            background: rgba(0, 0, 0, 0.5);
-        }
-        .download h2 {
-            font-size: clamp(1.8rem, 6vw, 3rem);
-            margin-bottom: 1.5rem;
-            color: #00d4ff;
-        }
-        .download-btn {
-            font-size: clamp(0.9rem, 3vw, 1.2rem);
-        }
-
-        /* Footer */
+        
         footer {
-            text-align: center;
-            padding: 1.5rem 0;
-            background: rgba(0, 0, 0, 0.8);
-            font-size: clamp(0.8rem, 2.5vw, 1rem);
+            margin-top: 20px;
+            color: #666;
+            font-size: 0.9em;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
         }
-
-        /* Media Queries */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 60px;
-                left: 0;
-                width: 100%;
-                background: rgba(0, 0, 0, 0.9);
-                padding: 1rem 0;
-            }
-            .nav-links.active {
-                display: flex;
-            }
-            .nav-links li {
-                margin: 0.5rem 0;
-            }
-            .hamburger {
-                display: flex;
-            }
-            .hero {
-                padding: 0 1rem;
-            }
-            .hero h1 {
-                font-size: clamp(1.8rem, 6vw, 2.5rem);
-            }
-            .hero p {
-                font-size: clamp(0.9rem, 3vw, 1.2rem);
-            }
-            .grid {
-                grid-template-columns: 1fr;
-            }
+        
+        /* Estilos para as tags de tecnologia */
+        .tecnologias {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
         }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 10px;
-            }
-            .hero {
-                height: 80vh;
-            }
-            .btn {
-                padding: 0.6rem 1.2rem;
-            }
-            .feature-card {
-                padding: 1rem;
-            }
+        
+        .tech-tag {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.9em;
+            font-weight: bold;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: default;
         }
-
-        @media (min-width: 1200px) {
-            .container {
-                max-width: 1400px;
-            }
-            .hero h1 {
-                font-size: 5rem;
-            }
+        
+        .tech-tag:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(135deg, #2575fc 0%, #6a11cb 100%);
+        }
+        
+        /* Estilo para o texto da licença */
+        em {
+            background: #e9f7ef;
+            padding: 8px 15px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+            border-left: 4px solid #28a745;
+        }
+        
+        /* Estilo para a lista de notícias */
+        .noticias-lista {
+            text-align: left;
+            display: inline-block;
+            background: #f0f8ff;
+            padding: 20px 40px;
+            border-radius: 10px;
+            list-style-type: none;
+            width: 80%;
+            border-left: 4px solid #2196F3;
+        }
+        
+        .noticias-lista li {
+            padding: 8px 0;
+            position: relative;
+            padding-left: 25px;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .noticias-lista li:last-child {
+            border-bottom: none;
+        }
+        
+        .noticias-lista li:before {
+            content: "📢";
+            position: absolute;
+            left: 0;
+        }
+        
+        /* Melhorias para as listas de serviços */
+        .servicos-lista {
+            text-align: left;
+            display: inline-block;
+            background: #f8f9fa;
+            padding: 20px 40px;
+            border-radius: 10px;
+            list-style-type: none;
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .servicos-lista li {
+            padding: 5px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .servicos-lista li:before {
+            content: "✓";
+            color: #4CAF50;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        /* Estilo para seções */
+        section {
+            margin: 30px 0;
+            padding: 20px;
+            background: #fafafa;
+            border-radius: 8px;
+        }
+        
+        section h3 {
+            color: #333;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        
+        /* Destaque para links externos */
+        .link-externo {
+            color: #2196F3;
+            font-weight: bold;
+        }
+        
+        .link-externo:hover {
+            color: #0b7dda;
         }
     </style>
 </head>
 <body>
     <header>
-        <nav class="container">
-            <div class="logo">Ivanildo</div>
-            <div class="hamburger" onclick="toggleMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <ul class="nav-links">
-                <li><a href="/projetos/">Projetos</a></li>
-                <li><a href="/Curso/">Curso</a></li>
-                <li><a href="/u/">Links</a></li>
-                <li><a href="#about">Sobre</a></li>
-            </ul>
+        <h1>Bem-vindo à Minha Página Web</h1>
+        <nav>
+            <a href="#home">Início</a>
+            <a href="#about">Sobre</a>
+            <a href="/Projetos/" class="link-externo">Todos Projetos</a>
+            <a href="/plutao/" class="link-externo">Plutão OS</a>
+            <a href="#services">Serviços</a>
+            <a href="#contact">Contato</a>
         </nav>
     </header>
+    
+    <main>
+        <h2>📂 Portfólio de Projetos</h2>
+        <p>Desenvolvo em múltiplas linguagens, com foco em automação e utilidades. Todo o código-fonte é disponibilizado sob <strong>Licença MIT</strong>, promovendo colaboração e aprendizado aberto.</p>
 
-    <section class="hero">
-        <div class="container">
-            <h1>Bem-vindo</h1>
-           <!-- <p>Explore o universo com Plutão, um sistema leve e poderoso!</p>
-            <a href="#download" class="btn">Baixe Agora</a>
+        <h3>Tecnologias Utilizadas:</h3>
+        <div class="tecnologias">
+            <span class="tech-tag">Batch Script</span>
+            <span class="tech-tag">Shell Script</span>
+            <span class="tech-tag">Pascal</span>
+            <span class="tech-tag">AutoIt3</span>
+            <span class="tech-tag">Linguagem C</span>
         </div>
-    </section>
 
-    <section id="features" class="features">
-        <div class="container">
-            <h2>Por Que Escolher Plutão?</h2>
-            <div class="grid">
-                <div class="feature-card">
-                    <h3>Base Debian</h3>
-                    <p>Herda a estabilidade e vastos repositórios do Debian, com atualizações seguras e confiáveis.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Interface Amigável</h3>
-                    <p>Ambiente desktop leve e customizável, inspirado em temas espaciais para uma experiência fluida.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Bom Desempenho</h3>
-                    <p>Otimizada para hardware antigo e novo, com suporte a GPUs e drivers open-source.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="download" class="download">
-        <div class="container">
-            <h2>Faça o Download Gratuito</h2>
-            <p>Versão mais recente: Plutão (ISO de 2GB), esse sistema é rolling release, base Debian</p>
-            <a href="/plutão/iso/" class="btn download-btn" onclick="simularDownload()">Baixar última ISO</a>
-            <br><br>
-            <h2>Faça o Download Gratuito</h2>
-            <p>Versão mais recente: Plutão BSD (ISO de 2GB), esse sistema é rolling release</p>
-            <p style="margin-top: 1rem; font-size: 0.9rem;">Verifique o checksum após o download.</p>
-            <a href="/plutão/iso/" class="btn download-btn" onclick="simularDownload()">Base FreeBSD</a>
-       --> </div>
-    </section>
-
+        <p><em>🔓 Open Source: Use, estude e modifique livremente!</em></p>
+        
+        <section>
+            <h3>📰 Últimas Notícias</h3>
+            <ul class="noticias-lista">
+                <li><strong>Menu AutoIt para listar scripts .BAT</strong> - Utilitário para Windows em AutoIt 3</li>
+                <li><strong>Micro menu para operar servidor Nginx</strong> - Interface simples para Windows em AutoIt 3</li>
+                <li><strong>Plutão OS</strong> - Em desenvolvimento ativo (corrigindo bugs)</li>
+                <li><strong>Novos scripts de automação</strong> - Adicionados ao repositório de projetos</li>
+            </ul>
+        </section>
+        
+        <section>
+            <h3>🛠️ Serviços Oferecidos</h3>
+            <ul class="servicos-lista">
+                <li>Desenvolvimento Web</li>
+                <li>Consultoria em TI</li>
+                <li>Suporte Técnico</li>
+                <li>Manutenção de Sistemas</li>
+                <li>Automação de Processos</li>
+                <li>Desenvolvimento de Scripts Personalizados</li>
+            </ul>
+        </section>
+        
+        <section id="quick-links">
+            <h3>🚀 Acesso Rápido</h3>
+            <p>
+                <a href="/Projetos/" class="link-externo">📁 Ver Todos os Projetos</a> | 
+                <a href="/plutao/" class="link-externo">🪐 Plutão OS</a> | 
+                <a href="https://github.com/seu-usuario" target="_blank" class="link-externo">💻 GitHub</a>
+            </p>
+        </section>
+    </main>
+    
     <footer>
-        <div class="container">
-            <p>&copy; <span id="year"></span> ivanildo.com.br.</p>
-        </div>
+        <p>&copy; <span id="currentYear"></span> ivanildo.com.br - Todos os direitos reservados.</p>
+        <p>📧 Contato: <a href="mailto:contato@ivanildo.net.br">contato@ivanildo.net.br</a></p>
+        <p>🕐 Última atualização: <span id="currentDate"></span></p>
     </footer>
 
     <script>
-        function simularDownload() {
-            alert('Download iniciado! Em um site real, isso redirecionaria para o arquivo ISO.');
-        }
-
-        function year() {
-            return new Date().getFullYear();
-        }
-        document.getElementById('year').textContent = year();
-
-        function toggleMenu() {
-            const navLinks = document.querySelector('.nav-links');
-            const hamburger = document.querySelector('.hamburger');
-            navLinks.classList.toggle('active');
-            hamburger.classList.toggle('active');
-        }
+        // Define o ano atual
+        document.getElementById("currentYear").textContent = new Date().getFullYear();
+        
+        // Define a data atual formatada
+        const now = new Date();
+        const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+        document.getElementById("currentDate").textContent = now.toLocaleDateString('pt-BR', options);
+        
+        // Adiciona funcionalidade básica apenas para links âncora (que começam com #)
+        document.querySelectorAll('nav a').forEach(link => {
+            const href = link.getAttribute('href');
+            
+            // Se for um link âncora (começa com #)
+            if (href.startsWith('#')) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const sectionId = href.substring(1);
+                    
+                    // Se for o link "Início", rola para o topo
+                    if (sectionId === 'home') {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    } else {
+                        // Para outras âncoras, tenta encontrar a seção
+                        const targetSection = document.getElementById(sectionId);
+                        if (targetSection) {
+                            targetSection.scrollIntoView({ behavior: 'smooth' });
+                        } else {
+                            // Se não encontrar a seção, mostra um alerta
+                            alert(`Seção "${this.textContent}" - Em desenvolvimento!`);
+                        }
+                    }
+                });
+            }
+            // Links que não começam com # (como /Projetos/, /plutao/) funcionam normalmente
+        });
+        
+        // Adiciona efeito de hover nas tags de tecnologia
+        document.querySelectorAll('.tech-tag').forEach(tag => {
+            tag.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05)';
+            });
+            
+            tag.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+            });
+        });
+        
+        // Exibe mensagem de boas-vindas no console
+        console.log('Bem-vindo à página de Ivanildo! 🚀');
     </script>
 </body>
 </html>
