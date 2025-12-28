@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Meus Links Favoritos</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      min-height: 100vh;
+      padding: 30px 15px;
+    }
+    .container {
+      max-width: 420px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .avatar {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      border: 4px solid white;
+      object-fit: cover;
+      margin-bottom: 16px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
+    h1 {
+      font-size: 2.1rem;
+      margin-bottom: 8px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+    }
+    .bio {
+      font-size: 1.05rem;
+      opacity: 0.9;
+      margin-bottom: 32px;
+      line-height: 1.4;
+    }
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .btn {
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: white;
+      padding: 18px;
+      border-radius: 16px;
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background: rgba(255,255,255,0.3);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    .btn i {
+      font-size: 1.4rem;
+    }
+    .category {
+      margin: 30px 0 16px;
+      font-size: 1.3rem;
+      font-weight: bold;
+      opacity: 0.9;
+      text-align: left;
+    }
+    footer {
+      margin-top: 50px;
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+    .year-badge {
+      background: rgba(255,255,255,0.1);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      margin-top: 5px;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Troque pela sua foto -->
+    <img src="https://instagram.ffor42-1.fna.fbcdn.net/v/t51.2885-19/605214241_17909219205276764_8867034838855248175_n.jpg?stp=dst-jpg_s150x150_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLmRqYW5nby41MDAuYzIifQ&_nc_ht=instagram.ffor42-1.fna.fbcdn.net&_nc_cat=108&_nc_oc=Q6cZ2QFnRn-SCVqqgN6K-rJWAND1bi8WONk5hBZbDeorO4yrIEWW3guV2YN-XC2YWDAoo_U&_nc_ohc=CwjbN3TGTwwQ7kNvwGfkMex&_nc_gid=xAu_T1Rgaaq8KGwIfZ33kg&edm=AA5fTDYBAAAA&ccb=7-5&oh=00_AfnWf-kGa709nKppSksIX1VG2Ew99hh_67z6IAr8EUy_ug&oe=69576124&_nc_sid=7edfe2" alt="Seu nome" class="avatar"/>
+    
+    <h1>@ivanildo.com.br</h1>
+    <p class="bio">As melhores ofertas e produtos que eu realmente uso e recomendo!<br>↓ Clica nos links abaixo ↓</p>
+
+    <div class="links">
+      <!-- CATEGORIA 1 -->
+      <div class="category">📱 Celulares e Eletrônicos</div>
+      <a href="https://shopee.br/link-afiliado-do-produto-iphone" target="_blank" class="btn">
+        <i class="fab fa-shopee"></i> iPhone 16 128GB por R$ X.XXX
+      </a>
+      <a href="https://amzn.to/SEU-LINK-AMAZON" target="_blank" class="btn">
+        <i class="fab fa-amazon"></i> Fone Sem Fio Top
+      </a>
+
+      <!-- CATEGORIA 2 -->
+      <div class="category">💻 Cursos e Formações</div>
+      <a href="https://hotmart.com/SEU-HOTLINK-curso-python" target="_blank" class="btn">
+        <i class="fas fa-graduation-cap"></i> Curso Python do Zero à PRO
+      </a>
+      <a href="https://eduzz.com/SEU-LINK" target="_blank" class="btn">
+        <i class="fas fa-laptop-code"></i> Formação Tráfego Pago
+      </a>
+
+      <!-- CATEGORIA 3 -->
+      <div class="category">💄 Beleza & Cuidados</div>
+      <a href="https://www.mercadolivre.com.br/SEU-LINK-AFILIADO" target="_blank" class="btn">
+        <i class="fas fa-heart"></i> Kit Skincare Coreano
+      </a>
+    </div>
+
+    <footer>
+      Feito com carinho • 
+      <span class="year-badge" id="currentYear"></span>
+      <div style="margin-top: 10px; font-size: 0.8rem;">
+        Links de afiliado (posso ganhar comissão)
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Atualiza o ano automaticamente
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+    
+    // Adiciona efeito de clique nos botões
+    document.querySelectorAll('.btn').forEach(button => {
+      button.addEventListener('click', function(e) {
+        // Efeito visual de clique
+        this.style.transform = 'scale(0.98)';
+        setTimeout(() => {
+          this.style.transform = '';
+        }, 150);
+      });
+    });
+    
+    // Atualiza o título com o ano atual
+    document.title = `Meus Links Favoritos - ${new Date().getFullYear()}`;
+  </script>
+
+</body>
+</html>
