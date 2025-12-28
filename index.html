@@ -3,12 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Links recomendados por @ivanildo.com.br - produtos, ofertas e conteúdos selecionados">
+  <meta name="description" content="Links recomendados por @ivanildo.com.br">
   <title>Links Recomendados - @ivanildo.com.br</title>
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <style>
@@ -16,8 +14,6 @@
       --primary: #667eea;
       --secondary: #764ba2;
       --accent: #f56565;
-      --light: rgba(255,255,255,0.9);
-      --dark: rgba(0,0,0,0.7);
     }
     
     * {
@@ -53,11 +49,6 @@
       object-fit: cover;
       margin-bottom: 16px;
       box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-      transition: transform 0.3s;
-    }
-    
-    .avatar:hover {
-      transform: scale(1.05);
     }
     
     h1 {
@@ -104,11 +95,6 @@
     .stat-value {
       font-size: 1.5rem;
       font-weight: 700;
-    }
-    
-    .stat-label {
-      font-size: 0.85rem;
-      opacity: 0.8;
     }
     
     .category {
@@ -204,12 +190,6 @@
       display: inline-block;
     }
     
-    .affiliate-disclaimer {
-      font-size: 0.8rem;
-      margin-top: 15px;
-      opacity: 0.8;
-    }
-    
     .search-container {
       margin-bottom: 25px;
     }
@@ -246,27 +226,53 @@
       margin-top: 8px;
     }
     
-    @media (max-width: 480px) {
-      .container {
-        max-width: 100%;
-      }
-      
-      h1 {
-        font-size: 1.8rem;
-      }
-      
-      .btn {
-        padding: 15px;
-      }
-      
-      .stats {
-        gap: 10px;
-      }
-      
-      .stat-item {
-        min-width: 80px;
-        padding: 8px 10px;
-      }
+    .loading {
+      text-align: center;
+      padding: 40px;
+      font-size: 1.1rem;
+    }
+    
+    .loading-spinner {
+      border: 4px solid rgba(255,255,255,0.3);
+      border-top: 4px solid white;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .filters {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .filter-btn {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.3s;
+    }
+    
+    .filter-btn.active {
+      background: rgba(255,255,255,0.3);
+      font-weight: 600;
+    }
+    
+    .filter-btn:hover {
+      background: rgba(255,255,255,0.25);
     }
   </style>
 </head>
@@ -279,216 +285,399 @@
       <h1>Links Recomendados</h1>
       <div class="username">@ivanildo.com.br</div>
       
-      <p class="bio">Produtos, serviços e conteúdos que eu realmente uso e recomendo. Links atualizados regularmente!</p>
+      <p class="bio">Produtos selecionados que eu uso e recomendo. Atualizado automaticamente!</p>
       
       <div class="stats">
         <div class="stat-item">
-          <div class="stat-value" id="totalLinks">6</div>
-          <div class="stat-label">Links Ativos</div>
+          <div class="stat-value" id="totalLinks">0</div>
+          <div class="stat-label">Links</div>
         </div>
         <div class="stat-item">
-          <div class="stat-value" id="categoriesCount">3</div>
+          <div class="stat-value" id="categoriesCount">0</div>
           <div class="stat-label">Categorias</div>
         </div>
         <div class="stat-item">
-          <div class="stat-value">⭐</div>
-          <div class="stat-label">Selecionados</div>
+          <div class="stat-value" id="updateDate">Hoje</div>
+          <div class="stat-label">Atualizado</div>
         </div>
       </div>
       
       <div class="search-container">
-        <input type="text" class="search-input" id="searchInput" placeholder="🔍 Buscar produtos ou categorias...">
+        <input type="text" class="search-input" id="searchInput" placeholder="🔍 Buscar produtos...">
+      </div>
+      
+      <div class="filters" id="categoryFilters">
+        <!-- Filtros serão gerados dinamicamente -->
       </div>
     </div>
 
+    <div class="loading" id="loading">
+      <div class="loading-spinner"></div>
+      <p>Carregando links...</p>
+    </div>
+
     <div class="links" id="linksContainer">
-      <!-- CATEGORIA 1 -->
-      <div class="category">
-        <i class="fas fa-mobile-alt"></i> 📱 Celulares e Eletrônicos
-      </div>
-      
-      <a href="https://mercadolivre.com/sec/2vaHe4Y" target="_blank" class="btn" data-category="celulares" data-platform="mercadolivre">
-        <div class="btn-icon"><i class="fas fa-tv"></i></div>
-        <div class="btn-content">
-          <div class="btn-title">Roku Streaming Stick - Transforma TV em Smart</div>
-          <div class="btn-description">Conversor Smart TV com controle por voz, Wi-Fi longo alcance, apps e canais ao vivo grátis.</div>
-          <span class="platform-tag">Mercado Livre</span>
-          <div class="price-tag">Preço em oferta</div>
-        </div>
-      </a>
-      
-      <a href="#" target="_blank" class="btn" data-category="celulares" data-platform="amazon">
-        <div class="btn-icon"><i class="fas fa-laptop"></i></div>
-        <div class="btn-content">
-          <div class="btn-title">Notebook ASUS Vivobook Go 15</div>
-          <div class="btn-description">AMD Ryzen 5, 8GB RAM, 256GB SSD, Windows 11, Tela 15.6" FHD.</div>
-          <span class="platform-tag">Mercado Livre</span>
-          <div class="price-tag">Preço em oferta</div>
-        </div>
-      </a>
-
-      <!-- CATEGORIA 2 -->
-      <div class="category">
-        <i class="fas fa-book"></i> 📚 Livros e Leituras
-      </div>
-      
-      <a href="https://mercadolivre.com/sec/21QLsxF" target="_blank" class="btn" data-category="livros" data-platform="mercadolivre">
-        <div class="btn-icon"><i class="fas fa-bible"></i></div>
-        <div class="btn-content">
-          <div class="btn-title">Kit 2 Bíblias Letra Gigante Luxo</div>
-          <div class="btn-description">João Ferreira de Almeida, capas preta e pink, com índice, em português.</div>
-          <span class="platform-tag">Mercado Livre</span>
-          <div class="price-tag">Preço em oferta</div>
-        </div>
-      </a>
-           <!--  
-      <a href="#" target="_blank" class="btn" data-category="livros" data-platform="amazon">
-        <div class="btn-icon"><i class="fas fa-book-open"></i></div>
-        <div class="btn-content">
-          <div class="btn-title">Coleção Desenvolvimento Pessoal</div>
-          <div class="btn-description">3 livros best-sellers sobre produtividade, finanças e mindset.</div>
-          <span class="platform-tag">Amazon</span>
-          <div class="price-tag">Oferta por tempo limitado</div>
-        </div>
-      </a> -->
-
-      <!-- CATEGORIA 3 -->
-           <!--  <div class="category">
-        <i class="fas fa-heart"></i> 💄 Beleza & Cuidados Pessoais
-      </div>
-      
-      <a href="#" target="_blank" class="btn" data-category="beleza" data-platform="mercadolivre">
-        <div class="btn-icon"><i class="fas fa-spa"></i></div>
-        <div class="btn-content">
-          <div class="btn-title">Kit Skincare Coreano Completo</div>
-          <div class="btn-description">Limpeza, tonificação e hidratação para todos os tipos de pele.</div>
-          <span class="platform-tag">Mercado Livre</span>
-          <div class="price-tag">Frete grátis</div>
-        </div>
-      </a>
-      
-      <a href="#" target="_blank" class="btn" data-category="beleza" data-platform="amazon">
-        <div class="btn-icon"><i class="fas fa-air-freshener"></i></div>
-        <div class="btn-content">
-          <div class="btn-title">Difusor de Aromaterapia com LED</div>
-          <div class="btn-description">7 cores, controle remoto, timer e função umidificador.</div>
-          <span class="platform-tag">Amazon</span>
-          <div class="price-tag">30% de desconto</div>
-        </div>
-      </a>
+      <!-- Links serão gerados dinamicamente do CSV -->
     </div>
     
     <div class="no-results" id="noResults">
       <i class="fas fa-search" style="font-size: 2rem; margin-bottom: 15px; opacity: 0.7;"></i>
-      <p>Nenhum resultado encontrado para sua busca.</p>
-      <p style="font-size: 0.9rem; margin-top: 10px;">Tente outros termos ou categorias.</p>
-    </div>-->
+      <p>Nenhum resultado encontrado.</p>
+    </div>
 
     <footer>
       <div class="year-badge" id="currentYear"></div>
-      <div class="affiliate-disclaimer">
-        <i class="fas fa-info-circle"></i> Links de afiliado - posso receber uma comissão por compras realizadas
+      <div style="margin-top: 10px; font-size: 0.85rem; opacity: 0.8;">
+        <i class="fas fa-sync-alt"></i> Atualizações automáticas via CSV
       </div>
-      <div style="margin-top: 15px;">
-        <p>Atualizado em <span id="currentDate"></span></p>
+      <div class="affiliate-disclaimer" style="margin-top: 15px;">
+        <i class="fas fa-info-circle"></i> Links de afiliado - posso receber comissão
       </div>
     </footer>
   </div>
 
   <script>
-    // Atualiza o ano e data automaticamente
-    const now = new Date();
-    document.getElementById('currentYear').textContent = now.getFullYear();
+    // Configurações
+    const CSV_URL = 'links.csv'; // Caminho para o arquivo CSV
+    const CACHE_DURATION = 5 * 60 * 1000; // 5 minutos em milissegundos
+    const CACHE_KEY = 'linksDataCache';
     
-    // Formata a data atual
-    const options = { day: '2-digit', month: 'long', year: 'numeric' };
-    document.getElementById('currentDate').textContent = 
-      now.toLocaleDateString('pt-BR', options);
-    
-    // Atualiza o título com o ano atual
-    document.title = `Links Recomendados - @ivanildo.com.br • ${now.getFullYear()}`;
-    
-    // Conta dinamicamente links e categorias
-    const links = document.querySelectorAll('.btn');
-    const categories = new Set();
-    links.forEach(link => {
-      categories.add(link.getAttribute('data-category'));
-    });
-    
-    document.getElementById('totalLinks').textContent = links.length;
-    document.getElementById('categoriesCount').textContent = categories.size;
-    
-    // Sistema de busca
-    const searchInput = document.getElementById('searchInput');
+    // Elementos DOM
     const linksContainer = document.getElementById('linksContainer');
+    const loadingElement = document.getElementById('loading');
     const noResults = document.getElementById('noResults');
-    const allLinks = document.querySelectorAll('.btn, .category');
+    const searchInput = document.getElementById('searchInput');
+    const categoryFilters = document.getElementById('categoryFilters');
+    const totalLinksElement = document.getElementById('totalLinks');
+    const categoriesCountElement = document.getElementById('categoriesCount');
+    const updateDateElement = document.getElementById('updateDate');
     
-    searchInput.addEventListener('input', function() {
-      const searchTerm = this.value.toLowerCase().trim();
-      let hasResults = false;
-      let lastVisibleCategory = null;
+    // Estado
+    let allProducts = [];
+    let categories = [];
+    let activeCategory = 'all';
+    let searchTerm = '';
+    
+    // Função para parsear CSV
+    function parseCSV(csvText) {
+      const lines = csvText.trim().split('\n');
+      if (lines.length === 0) return [];
       
-      // Esconde todos os elementos primeiro
-      allLinks.forEach(element => {
-        element.style.display = 'none';
-      });
+      const headers = lines[0].split(';').map(h => h.trim());
+      const products = [];
       
-      // Se a busca estiver vazia, mostra tudo
-      if (searchTerm === '') {
-        allLinks.forEach(element => {
-          element.style.display = element.classList.contains('category') ? 'flex' : 'flex';
+      for (let i = 1; i < lines.length; i++) {
+        const currentLine = lines[i].split(';');
+        if (currentLine.length !== headers.length) continue;
+        
+        const product = {};
+        headers.forEach((header, index) => {
+          product[header] = currentLine[index] ? currentLine[index].trim() : '';
         });
-        noResults.style.display = 'none';
+        products.push(product);
+      }
+      
+      return products;
+    }
+    
+    // Função para carregar dados do CSV
+    async function loadCSVData() {
+      try {
+        // Verificar cache
+        const cachedData = getCachedData();
+        if (cachedData) {
+          console.log('Usando dados em cache');
+          return cachedData;
+        }
+        
+        // Buscar CSV
+        const response = await fetch(CSV_URL + '?t=' + Date.now()); // Cache busting
+        if (!response.ok) throw new Error('Erro ao carregar CSV');
+        
+        const csvText = await response.text();
+        const products = parseCSV(csvText);
+        
+        // Salvar no cache
+        cacheData(products);
+        
+        return products;
+      } catch (error) {
+        console.error('Erro ao carregar CSV:', error);
+        
+        // Tentar carregar dados de fallback
+        const fallbackData = getFallbackData();
+        if (fallbackData.length > 0) {
+          console.log('Usando dados de fallback');
+          return fallbackData;
+        }
+        
+        return [];
+      }
+    }
+    
+    // Cache em localStorage
+    function getCachedData() {
+      try {
+        const cached = localStorage.getItem(CACHE_KEY);
+        if (!cached) return null;
+        
+        const { timestamp, data } = JSON.parse(cached);
+        const now = Date.now();
+        
+        if (now - timestamp < CACHE_DURATION) {
+          return data;
+        }
+        
+        localStorage.removeItem(CACHE_KEY);
+        return null;
+      } catch (e) {
+        return null;
+      }
+    }
+    
+    function cacheData(data) {
+      try {
+        const cacheObject = {
+          timestamp: Date.now(),
+          data: data
+        };
+        localStorage.setItem(CACHE_KEY, JSON.stringify(cacheObject));
+      } catch (e) {
+        console.error('Erro ao salvar cache:', e);
+      }
+    }
+    
+    // Dados de fallback (caso CSV não carregue)
+    function getFallbackData() {
+      return [
+        {
+          categoria: 'Celulares e Eletrônicos',
+          Produto: 'Roku Streaming Stick',
+          descricao: 'Transforma TV em Smart com controle voz',
+          link: 'https://mercadolivre.com/sec/2vaHe4Y',
+          preco: 'Oferta especial',
+          plataforma: 'Mercado Livre',
+          icon: 'fas fa-tv'
+        },
+        {
+          categoria: 'Livros',
+          Produto: 'Kit Bíblia Letra Gigante',
+          descricao: '2 Bíblias luxo com índice',
+          link: 'https://mercadolivre.com/sec/21QLsxF',
+          preco: 'Preço especial',
+          plataforma: 'Mercado Livre',
+          icon: 'fas fa-bible'
+        }
+      ];
+    }
+    
+    // Gerar HTML para um produto
+    function createProductHTML(product) {
+      return `
+        <a href="${product.link}" target="_blank" class="btn" 
+           data-category="${product.categoria}" 
+           data-platform="${product.plataforma}">
+          <div class="btn-icon"><i class="${product.icon || 'fas fa-link'}"></i></div>
+          <div class="btn-content">
+            <div class="btn-title">${product.Produto}</div>
+            <div class="btn-description">${product.descricao}</div>
+            <span class="platform-tag">${product.plataforma}</span>
+            ${product.preco ? `<div class="price-tag">${product.preco}</div>` : ''}
+          </div>
+        </a>
+      `;
+    }
+    
+    // Gerar categorias únicas
+    function extractCategories(products) {
+      const uniqueCategories = [...new Set(products.map(p => p.categoria))];
+      return uniqueCategories.sort();
+    }
+    
+    // Gerar filtros de categoria
+    function createCategoryFilters(categories) {
+      return `
+        <button class="filter-btn active" data-category="all">Todos</button>
+        ${categories.map(cat => `
+          <button class="filter-btn" data-category="${cat}">${cat}</button>
+        `).join('')}
+      `;
+    }
+    
+    // Filtrar produtos
+    function filterProducts() {
+      let filtered = allProducts;
+      
+      // Filtrar por categoria
+      if (activeCategory !== 'all') {
+        filtered = filtered.filter(p => p.categoria === activeCategory);
+      }
+      
+      // Filtrar por busca
+      if (searchTerm) {
+        const term = searchTerm.toLowerCase();
+        filtered = filtered.filter(p => 
+          p.Produto.toLowerCase().includes(term) ||
+          p.descricao.toLowerCase().includes(term) ||
+          p.categoria.toLowerCase().includes(term) ||
+          p.plataforma.toLowerCase().includes(term)
+        );
+      }
+      
+      return filtered;
+    }
+    
+    // Renderizar produtos
+    function renderProducts(products) {
+      if (products.length === 0) {
+        linksContainer.innerHTML = '';
+        noResults.style.display = 'block';
         return;
       }
       
-      // Filtra os links
-      allLinks.forEach(element => {
-        const text = element.textContent.toLowerCase();
-        
-        if (element.classList.contains('category')) {
-          // Para categorias, verifica se há links visíveis dentro dela
-          lastVisibleCategory = element;
-        } else if (text.includes(searchTerm) || 
-                   element.getAttribute('data-category').includes(searchTerm) ||
-                   element.getAttribute('data-platform').includes(searchTerm)) {
-          element.style.display = 'flex';
-          hasResults = true;
-          
-          // Mostra a categoria pai se estiver oculta
-          if (lastVisibleCategory) {
-            lastVisibleCategory.style.display = 'flex';
-          }
+      noResults.style.display = 'none';
+      
+      // Agrupar por categoria
+      const grouped = {};
+      products.forEach(product => {
+        if (!grouped[product.categoria]) {
+          grouped[product.categoria] = [];
         }
+        grouped[product.categoria].push(product);
       });
       
-      // Mostra mensagem se não houver resultados
-      noResults.style.display = hasResults ? 'none' : 'block';
-    });
-    
-    // Efeito de clique nos botões
-    links.forEach(button => {
-      button.addEventListener('click', function(e) {
-        // Efeito visual de clique
-        this.style.transform = 'scale(0.98)';
-        setTimeout(() => {
-          this.style.transform = '';
-        }, 150);
+      // Gerar HTML
+      let html = '';
+      Object.keys(grouped).forEach(category => {
+        html += `
+          <div class="category">
+            <i class="fas fa-folder"></i> ${category}
+          </div>
+        `;
         
-        // Registra clique (simulação)
-        const platform = this.getAttribute('data-platform');
-        console.log(`Link clicado: ${platform}`);
+        grouped[category].forEach(product => {
+          html += createProductHTML(product);
+        });
       });
-    });
+      
+      linksContainer.innerHTML = html;
+      attachClickEvents();
+    }
     
-    // Adiciona data de atualização no footer
-    const updateDate = document.createElement('div');
-    updateDate.style.marginTop = '10px';
-    updateDate.style.fontSize = '0.8rem';
-    updateDate.style.opacity = '0.7';
-    updateDate.innerHTML = `Última atualização: ${now.toLocaleDateString('pt-BR')}`;
-    document.querySelector('footer').appendChild(updateDate);
+    // Atualizar estatísticas
+    function updateStats() {
+      totalLinksElement.textContent = allProducts.length;
+      categoriesCountElement.textContent = categories.length;
+      
+      const now = new Date();
+      updateDateElement.textContent = now.toLocaleDateString('pt-BR');
+    }
+    
+    // Anexar eventos de clique
+    function attachClickEvents() {
+      document.querySelectorAll('.btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          this.style.transform = 'scale(0.98)';
+          setTimeout(() => {
+            this.style.transform = '';
+          }, 150);
+          
+          // Registrar clique (pode enviar para analytics)
+          const platform = this.getAttribute('data-platform');
+          console.log(`Produto clicado: ${platform}`);
+        });
+      });
+    }
+    
+    // Inicializar filtros
+    function initFilters() {
+      categoryFilters.innerHTML = createCategoryFilters(categories);
+      
+      // Evento para filtros de categoria
+      categoryFilters.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          // Remover active de todos
+          categoryFilters.querySelectorAll('.filter-btn').forEach(b => {
+            b.classList.remove('active');
+          });
+          
+          // Adicionar active no clicado
+          this.classList.add('active');
+          activeCategory = this.getAttribute('data-category');
+          
+          // Re-renderizar
+          const filtered = filterProducts();
+          renderProducts(filtered);
+        });
+      });
+      
+      // Evento para busca
+      searchInput.addEventListener('input', function() {
+        searchTerm = this.value.toLowerCase().trim();
+        const filtered = filterProducts();
+        renderProducts(filtered);
+      });
+    }
+    
+    // Inicializar
+    async function init() {
+      try {
+        loadingElement.style.display = 'block';
+        
+        // Carregar dados
+        allProducts = await loadCSVData();
+        categories = extractCategories(allProducts);
+        
+        // Atualizar estatísticas
+        updateStats();
+        
+        // Inicializar filtros
+        initFilters();
+        
+        // Renderizar todos os produtos inicialmente
+        renderProducts(allProducts);
+        
+        // Atualizar título
+        document.title = `Links Recomendados (${allProducts.length}) - @ivanildo.com.br`;
+        
+        // Atualizar ano
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+      } catch (error) {
+        console.error('Erro na inicialização:', error);
+        linksContainer.innerHTML = `
+          <div style="text-align: center; padding: 40px;">
+            <i class="fas fa-exclamation-triangle" style="font-size: 3rem; margin-bottom: 20px;"></i>
+            <p>Erro ao carregar os links. Por favor, tente novamente.</p>
+          </div>
+        `;
+      } finally {
+        loadingElement.style.display = 'none';
+      }
+    }
+    
+    // Iniciar quando a página carregar
+    document.addEventListener('DOMContentLoaded', init);
+    
+    // Atualizar automaticamente a cada 5 minutos
+    setInterval(async () => {
+      console.log('Atualizando dados...');
+      const freshData = await loadCSVData();
+      if (freshData.length > 0) {
+        allProducts = freshData;
+        categories = extractCategories(allProducts);
+        updateStats();
+        initFilters();
+        renderProducts(filterProducts());
+      }
+    }, CACHE_DURATION);
+    
+    // Forçar atualização com F5
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'F5') {
+        localStorage.removeItem(CACHE_KEY);
+      }
+    });
   </script>
 
 </body>
