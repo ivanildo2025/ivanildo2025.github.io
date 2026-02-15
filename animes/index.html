@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Animes</title>
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            padding: 24px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 8px;
+            border-left: 6px solid #e50914;
+            padding-left: 16px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 24px;
+            font-style: italic;
+            padding-left: 22px;
+        }
+
+        .search-box {
+            margin-bottom: 24px;
+        }
+
+        #searchInput {
+            width: 100%;
+            padding: 12px 20px;
+            font-size: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 40px;
+            outline: none;
+            transition: border 0.3s;
+        }
+
+        #searchInput:focus {
+            border-color: #e50914;
+        }
+
+        .anime-list {
+            list-style: none;
+        }
+
+        .anime-list li {
+            background: #fafafa;
+            margin-bottom: 10px;
+            border-radius: 12px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid #eee;
+        }
+
+        .anime-list li:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+            border-color: #e50914;
+        }
+
+        .anime-list a {
+            display: block;
+            padding: 16px 20px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .anime-list a:hover {
+            color: #e50914;
+        }
+
+        /* Mensagem quando nenhum anime é encontrado */
+        #noResults {
+            text-align: center;
+            padding: 30px 20px;
+            color: #999;
+            font-size: 1.1rem;
+            background: #f9f9f9;
+            border-radius: 12px;
+            border: 2px dashed #ddd;
+            display: none;
+        }
+
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎌 Lista de Animes</h1>
+        <div class="subtitle">Clique no título para mais informações</div>
+
+        <!-- Campo de busca -->
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Filtrar animes... (ex: .app)" autocomplete="off">
+        </div>
+
+        <!-- Lista de animes -->
+        <ul class="anime-list" id="animeList">
+            <li><a href="https://animes365.net/" target="_blank" rel="noopener">animes365.net</a></li>
+            <li><a href="https://animeflix.app/" target="_blank" rel="noopener">animeflix.app</a></li>
+´           <li><a href="https://aniture-pt.com.br/" target="_blank" rel="noopener">aniture-pt.com.br</a></li>
+            <li><a href="https://animesflix.online/" target="_blank" rel="noopener">animesflix.online</a></li>
+
+
+
+         
+        </ul>
+
+        <!-- Mensagem de nenhum resultado -->
+        <div id="noResults">Nenhum anime encontrado 😢</div>
+
+        <footer>
+            ⚡ Links externos para MyAnimeList • Atualize a lista conforme desejar
+        </footer>
+    </div>
+
+    <script>
+        // Elementos da interface
+        const searchInput = document.getElementById('searchInput');
+        const animeList = document.getElementById('animeList');
+        const items = animeList.getElementsByTagName('li');
+        const noResults = document.getElementById('noResults');
+
+        // Função para filtrar a lista
+        function filterList() {
+            const filterText = searchInput.value.toLowerCase().trim();
+            let visibleCount = 0;
+
+            // Percorre todos os itens da lista
+            for (let i = 0; i < items.length; i++) {
+                const link = items[i].getElementsByTagName('a')[0];
+                const text = link.textContent.toLowerCase();
+                
+                if (text.includes(filterText)) {
+                    items[i].style.display = ''; // mostra (remove estilo inline)
+                    visibleCount++;
+                } else {
+                    items[i].style.display = 'none'; // esconde
+                }
+            }
+
+            // Exibe ou oculta a mensagem de nenhum resultado
+            if (visibleCount === 0) {
+                noResults.style.display = 'block';
+            } else {
+                noResults.style.display = 'none';
+            }
+        }
+
+        // Adiciona o evento de input no campo de busca
+        searchInput.addEventListener('input', filterList);
+
+        // (Opcional) Executa uma vez ao carregar para garantir estado inicial
+        filterList();
+    </script>
+</body>
+</html>
