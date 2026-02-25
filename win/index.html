@@ -3,43 +3,377 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Copiar Conteúdo do Textarea</title>
+    <title>Gerar net user (comando delete separado)</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 850px;
+            margin: 30px auto;
+            padding: 20px;
+            background: linear-gradient(145deg, #f0f4f8 0%, #e6ecf3 100%);
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px -12px rgba(0,40,80,0.25);
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+        h1 {
+            margin-top: 0;
+            font-weight: 500;
+            color: #1e3b5c;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        h1 i {
+            font-size: 32px;
+            color: #2f6e9c;
+        }
+        .links {
+            background: #eef6fb;
+            padding: 16px 20px;
+            border-radius: 40px;
+            margin: 20px 0 25px;
+            font-size: 0.95rem;
+        }
+        .links a {
+            color: #1d5b8e;
+            text-decoration: none;
+            margin-right: 28px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .links a:hover {
+            text-decoration: underline;
+            color: #093c5c;
+        }
+        .form-group {
+            margin-bottom: 22px;
+        }
+        label {
+            font-weight: 600;
+            color: #164863;
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 14px 18px;
+            font-size: 1rem;
+            border: 2px solid #cbdbe9;
+            border-radius: 50px;
+            background: white;
+            transition: 0.2s;
+            box-sizing: border-box;
+        }
+        input:focus {
+            border-color: #2f6e9c;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(47,110,156,0.2);
+        }
+        .input-sugestao {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .input-sugestao input {
+            flex: 1;
+        }
+        .btn-sugestao {
+            background: #d9e8f5;
+            border: 1px solid #aac4db;
+            border-radius: 40px;
+            padding: 10px 20px;
+            font-weight: 600;
+            color: #164863;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: 0.1s;
+        }
+        .btn-sugestao:hover {
+            background: #c2d9ee;
+        }
+
+        /* Áreas de comando */
+        .command-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .command-box {
+            flex: 1 1 250px;
+            background: #1e1e2f;
+            border-radius: 24px;
+            padding: 18px;
+            border: 2px solid #33485d;
+        }
+        .command-box label {
+            color: #b0d4f0;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .command-box textarea {
+            width: 100%;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            background: #0f172a;
+            color: #b3e0ff;
+            border: 1px solid #3a5f7a;
+            border-radius: 16px;
+            padding: 14px;
+            resize: vertical;
+            white-space: pre;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+        .btn-copiar-pequeno {
+            background: #2b4b6e;
+            color: white;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-copiar-pequeno:hover {
+            background: #1d3c58;
+        }
+
+        /* Botões principais */
+        .button-group {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin: 30px 0 20px;
+        }
+        .btn-primary {
+            background: #1b6b99;
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 60px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 4px 8px rgba(0,60,100,0.2);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-primary:hover {
+            background: #0e4f73;
+            transform: scale(1.02);
+        }
+        .btn-secondary {
+            background: #f0f7fe;
+            color: #164863;
+            border: 2px solid #b7d3ea;
+            padding: 12px 28px;
+            border-radius: 60px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-secondary:hover {
+            background: #dbe9f5;
+            border-color: #8bb3d1;
+        }
+
+        .info-note {
+            background: #e4f0fa;
+            padding: 12px 20px;
+            border-radius: 40px;
+            color: #11517c;
+            font-size: 0.9rem;
+            margin: 20px 0 5px;
+            border-left: 4px solid #2f6e9c;
+        }
+        .info-note i {
+            margin-right: 8px;
+        }
+    </style>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-  <a href="./avatar.png">Avatar</a><BR>
-<a href="https://images.alphacoders.com/127/thumb-1920-1276648.png">https://images.alphacoders.com/127/thumb-1920-1276648.png</a>
-<BR>
+<div class="container">
+    <h1>
+        <i class="fas fa-terminal"></i> 
+        Gerador net user (delete separado)
+    </h1>
 
+    <!-- Links existentes -->
+    <div class="links">
+        <a href="./avatar.png"><i class="fas fa-user-circle"></i> Avatar</a>
+        <a href="https://images.alphacoders.com/127/thumb-1920-1276648.png" target="_blank"><i class="fas fa-external-link-alt"></i> thumb-1920-1276648.png</a>
+    </div>
 
-  
-    <textarea id="meuTextarea" rows="4" cols="50">net user Diego /add 1234
-net localgroup Users Diego /add
-net user
-net user Usuario /delete
+    <!-- Formulário nome e senha -->
+    <div class="form-group">
+        <label for="nomeUsuario"><i class="fas fa-tag"></i> Nome do usuário:</label>
+        <input type="text" id="nomeUsuario" placeholder="Ex: USD, Aluno, PC01" value="Diego">
+    </div>
 
-</textarea>
-    <br>
-    <button onclick="copiarTexto()">Copiar Texto</button>
+    <div class="form-group">
+        <label for="senhaUsuario"><i class="fas fa-lock"></i> Senha:</label>
+        <div class="input-sugestao">
+            <input type="text" id="senhaUsuario" placeholder="Digite a senha desejada" value="1234">
+            <button class="btn-sugestao" onclick="sugerirSenha()" type="button"><i class="fas fa-magic"></i> Sugerir</button>
+        </div>
+    </div>
 
-    <script>
-        function copiarTexto() {
-            const textarea = document.getElementById('meuTextarea');
-            textarea.select();
-            textarea.setSelectionRange(0, 99999); // Para dispositivos móveis
+    <!-- Botão principal: gerar comandos (atualiza ambas as áreas) -->
+    <div class="button-group">
+        <button class="btn-primary" onclick="gerarComandos()"><i class="fas fa-cogs"></i> Gerar comandos</button>
+    </div>
 
-            try {
-                // Tenta usar o comando de copiar
-                const sucesso = document.execCommand('copy');
-                if (sucesso) {
-                    alert('Texto copiado com sucesso!');
-                } else {
-                    throw new Error('Falha ao copiar texto.');
-                }
-            } catch (err) {
-                console.error('Erro ao copiar texto: ', err);
-                alert('Erro ao copiar texto. Veja o console para mais detalhes.');
-            }
+    <!-- Duas áreas de comando separadas: criação/lista e exclusão -->
+    <div class="command-section">
+        <!-- Bloco 1: comandos de criação e listagem -->
+        <div class="command-box">
+            <label><i class="fas fa-user-plus"></i> Criar / Adicionar / Listar</label>
+            <textarea id="textareaCriacao" rows="4" readonly>net user USD 1234 /add
+net localgroup Users USD /add
+net user</textarea>
+            <button class="btn-copiar-pequeno" onclick="copiarTexto('criacao')"><i class="fas fa-copy"></i> Copiar criação</button>
+        </div>
+
+        <!-- Bloco 2: comando de exclusão separado -->
+        <div class="command-box">
+            <label><i class="fas fa-user-minus"></i> Excluir usuário (separado)</label>
+            <textarea id="textareaDelete" rows="2" readonly>net user USD /delete</textarea>
+            <button class="btn-copiar-pequeno" onclick="copiarTexto('delete')"><i class="fas fa-copy"></i> Copiar delete</button>
+        </div>
+    </div>
+
+    <!-- Botão adicional para copiar tudo (opcional) -->
+    <div style="display: flex; justify-content: flex-end;">
+        <button class="btn-secondary" onclick="copiarAmbos()"><i class="fas fa-clipboard-list"></i> Copiar ambos juntos</button>
+    </div>
+
+    <!-- Dica -->
+    <div class="info-note">
+        <i class="fas fa-info-circle"></i> 
+        O comando de exclusão fica separado para evitar remoção acidental. Use com cuidado.
+    </div>
+</div>
+
+<script>
+    // Função principal: lê nome/senha e atualiza as duas textareas
+    function gerarComandos() {
+        let nome = document.getElementById('nomeUsuario').value.trim();
+        let senha = document.getElementById('senhaUsuario').value.trim();
+
+        if (nome === '') {
+            alert('Preencha o nome do usuário.');
+            return;
         }
-    </script>
+        if (senha === '') {
+            alert('Preencha a senha.');
+            return;
+        }
+
+        // Remove espaços do nome (usuário não pode ter espaços)
+        nome = nome.replace(/\s+/g, '');
+        if (nome === '') {
+            alert('Nome inválido após remover espaços.');
+            return;
+        }
+
+        // Textarea de criação (add, group, list)
+        const comandosCriacao = 
+`net user ${nome} ${senha} /add
+net localgroup Users ${nome} /add
+net user`;
+        document.getElementById('textareaCriacao').value = comandosCriacao;
+
+        // Textarea de exclusão (somente delete)
+        document.getElementById('textareaDelete').value = `net user ${nome} /delete`;
+    }
+
+    // Função para copiar uma área específica (criacao ou delete)
+    function copiarTexto(tipo) {
+        let textareaId = (tipo === 'criacao') ? 'textareaCriacao' : 'textareaDelete';
+        const textarea = document.getElementById(textareaId);
+        textarea.select();
+        textarea.setSelectionRange(0, 99999);
+
+        try {
+            const sucesso = document.execCommand('copy');
+            if (sucesso) {
+                alert(`✅ Comando(s) de ${tipo === 'criacao' ? 'criação' : 'exclusão'} copiado(s)!`);
+            } else {
+                throw new Error('Falha ao copiar');
+            }
+        } catch (err) {
+            console.error(err);
+            alert('❌ Erro ao copiar. Seu navegador pode bloquear a ação.');
+        }
+    }
+
+    // Função para copiar os dois blocos juntos (útil para ter tudo)
+    function copiarAmbos() {
+        const textoCriacao = document.getElementById('textareaCriacao').value;
+        const textoDelete = document.getElementById('textareaDelete').value;
+        const textoCompleto = textoCriacao + '\n' + textoDelete;  // junta com linha em branco
+
+        // Cria um textarea temporário para copiar o texto completo
+        const tempArea = document.createElement('textarea');
+        tempArea.value = textoCompleto;
+        document.body.appendChild(tempArea);
+        tempArea.select();
+        tempArea.setSelectionRange(0, 99999);
+
+        try {
+            const sucesso = document.execCommand('copy');
+            if (sucesso) {
+                alert('✅ Ambos os comandos (criação + delete) foram copiados!');
+            } else {
+                throw new Error('Falha ao copiar');
+            }
+        } catch (err) {
+            console.error(err);
+            alert('❌ Erro ao copiar os dois blocos.');
+        } finally {
+            document.body.removeChild(tempArea);
+        }
+    }
+
+    // Função para sugerir senha aleatória
+    function sugerirSenha() {
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%&*';
+        let senha = '';
+        for (let i = 0; i < 10; i++) {
+            senha += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        document.getElementById('senhaUsuario').value = senha;
+        // Opcional: atualiza os comandos automaticamente
+        gerarComandos();
+    }
+
+    // Inicializar com os valores padrão (USD/1234)
+    window.onload = function() {
+        gerarComandos();
+    };
+</script>
 </body>
 </html>
