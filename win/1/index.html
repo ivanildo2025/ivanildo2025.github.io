@@ -1,95 +1,367 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Listagem</title>
-  </head>
-  <body><pre>
-<h1> Sala info</h1>
-<a href="./w.png">Papel de parede</a>
-<a href="https://brave.com/pt-br/download/">Brave</a>
-<a href="https://www.google.com.br/chrome/">Chrome</a>
-<a href="https://winaerotweaker.com/">https://winaerotweaker.com/</a>
-<a href="https://ivanildo.com.br/bat/adm-ferramentas.bat">adm-ferramentas.bat</a>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Listagem de Recursos</title>
+  <!-- Fonte moderna e ícones -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(145deg, #f6f9fc 0%, #e9f1f8 100%);
+      color: #1a2b3c;
+      line-height: 1.5;
+      padding: 2rem 1rem;
+      min-height: 100vh;
+    }
 
-    
-<h1> 2021 </h1>
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.6);
+      backdrop-filter: blur(3px);
+      border-radius: 2.5rem;
+      padding: 2rem 2rem 1.5rem;
+      box-shadow: 0 20px 40px -10px rgba(0,30,50,0.15);
+      border: 1px solid rgba(255,255,255,0.7);
+    }
 
-<a href="./code/">code</a>
-<a href="https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/pt-br/ProPlus2021Retail.img">/media/pt-br/ProPlus2021Retail.img</a>
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #164863, #2a6478);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
 
+    h1 i {
+      background: #164863;
+      background: linear-gradient(145deg, #2a6478, #164863);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 2.2rem;
+    }
 
-<h1>Drives</h1>
-    <a href="https://www.meupositivo.com.br/para-voce/suporte-tecnico/drivers">Drives Positivo</a>
-    
-  </pre></body>
+    .subhead {
+      color: #2f4b6e;
+      margin-bottom: 2.5rem;
+      font-size: 1.2rem;
+      border-left: 4px solid #3f8db3;
+      padding-left: 1.2rem;
+      background: rgba(63, 141, 179, 0.05);
+      border-radius: 0 8px 8px 0;
+    }
 
-  <h1>Sites Oficiais de Drivers dos Maiores Fabricantes de PCs no Brasil</h1>
+    .categoria {
+      margin-bottom: 3rem;
+    }
 
-<ul>
-    <li>
-        <strong>Dell Brasil</strong><br>
-        <a href="https://www.dell.com/support/drivers" target="_blank">
-            https://www.dell.com/support/drivers
+    .categoria-titulo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #1b3b4f;
+      border-bottom: 3px solid #9fc5db;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .categoria-titulo i {
+      color: #2a6478;
+      font-size: 1.8rem;
+      width: 2rem;
+    }
+
+    .grid-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .card-link {
+      background: white;
+      border-radius: 1.5rem;
+      padding: 1rem 1.5rem;
+      transition: all 0.2s ease;
+      border: 1px solid rgba(0,0,0,0.04);
+      box-shadow: 0 6px 14px rgba(0, 30, 40, 0.05);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .card-link:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 24px -8px rgba(20, 80, 110, 0.2);
+      border-color: #b8d7e9;
+      background: #fdfdfd;
+    }
+
+    .card-link a {
+      text-decoration: none;
+      font-weight: 500;
+      color: #1e405b;
+      word-break: break-word;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .card-link i {
+      font-size: 1.6rem;
+      min-width: 2rem;
+      color: #2f6f92;
+      transition: transform 0.2s;
+    }
+
+    .card-link:hover i {
+      transform: scale(1.05);
+      color: #164863;
+    }
+
+    .link-externo::after {
+      content: "\f08e";
+      font-family: "Font Awesome 6 Free";
+      font-weight: 600;
+      font-size: 0.8rem;
+      margin-left: 0.5rem;
+      opacity: 0.5;
+      color: currentColor;
+    }
+
+    /* para links internos (relativos) não mostrar ícone de externo */
+    .link-interno::after {
+      display: none;
+    }
+
+    .badge {
+      background: #e1eff8;
+      border-radius: 40px;
+      padding: 0.2rem 1rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #1b5777;
+      white-space: nowrap;
+      border: 1px solid #b1d2e9;
+    }
+
+    .driver-section {
+      background: rgba(255,255,255,0.5);
+      border-radius: 2rem;
+      padding: 1.8rem 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    footer {
+      margin-top: 3rem;
+      text-align: center;
+      color: #527a94;
+      font-size: 0.95rem;
+      border-top: 2px dashed #b0cfE5;
+      padding-top: 2rem;
+    }
+
+    footer i {
+      color: #b5566b;
+    }
+
+    /* responsividade fina */
+    @media (max-width: 600px) {
+      .container { padding: 1.5rem 1rem; }
+      h1 { font-size: 2rem; }
+      .categoria-titulo { font-size: 1.5rem; }
+    }
+
+    /* para links de download direto */
+    .download-icon {
+      color: #3b8f6d;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>
+      <i class="fas fa-link"></i> 
+      Listagem de Recursos
+    </h1>
+    <div class="subhead">
+      <i class="fas fa-compass" style="margin-right: 0.5rem;"></i> Acesso rápido a drivers, navegadores, ferramentas e imagens oficiais
+    </div>
+  </header>
+
+  <!-- SALA INFO (Navegadores + utilitários) -->
+  <section class="categoria">
+    <div class="categoria-titulo">
+      <i class="fas fa-laptop-house"></i> 
+      <span>Sala info</span>
+    </div>
+    <div class="grid-links">
+      <!-- Papel de parede (relativo) -->
+      <div class="card-link">
+        <a href="./w.png" class="link-interno" title="Papel de parede local">
+          <i class="fas fa-image"></i> Papel de parede
         </a>
-    </li>
-
-    <li>
-        <strong>HP Brasil</strong><br>
-        <a href="https://support.hp.com/br-pt/drivers" target="_blank">
-            https://support.hp.com/br-pt/drivers
+      </div>
+      <!-- Brave -->
+      <div class="card-link">
+        <a href="https://brave.com/pt-br/download/" target="_blank" rel="noopener" class="link-externo">
+          <i class="fab fa-brave"></i> Brave
         </a>
-    </li>
-
-    <li>
-        <strong>Lenovo Brasil</strong><br>
-        <a href="https://support.lenovo.com/br" target="_blank">
-            https://support.lenovo.com/br
+      </div>
+      <!-- Chrome -->
+      <div class="card-link">
+        <a href="https://www.google.com.br/chrome/" target="_blank" rel="noopener" class="link-externo">
+          <i class="fab fa-chrome"></i> Chrome
         </a>
-    </li>
-
-    <li>
-        <strong>Acer Brasil</strong><br>
-        <a href="https://www.acer.com/br-pt/support" target="_blank">
-            https://www.acer.com/br-pt/support
+      </div>
+      <!-- Firefox -->
+      <div class="card-link">
+        <a href="https://www.firefox.com/pt-BR/?utm_campaign=SET_DEFAULT_BROWSER/" target="_blank" rel="noopener" class="link-externo">
+          <i class="fab fa-firefox-browser"></i> Firefox
         </a>
-    </li>
-
-    <li>
-        <strong>ASUS Brasil</strong><br>
-        <a href="https://www.asus.com/br/support" target="_blank">
-            https://www.asus.com/br/support
+      </div>
+      <!-- Winaero Tweaker -->
+      <div class="card-link">
+        <a href="https://winaerotweaker.com/" target="_blank" rel="noopener" class="link-externo">
+          <i class="fas fa-sliders-h"></i> Winaero Tweaker
         </a>
-    </li>
-
-    <li>
-        <strong>Samsung Brasil</strong><br>
-        <a href="https://www.samsung.com/br/support" target="_blank">
-            https://www.samsung.com/br/support
+      </div>
+      <!-- adm-ferramentas.bat -->
+      <div class="card-link">
+        <a href="https://ivanildo.com.br/bat/adm-ferramentas.bat" target="_blank" rel="noopener" class="link-externo">
+          <i class="fas fa-terminal" style="color:#3f6b8f;"></i> adm-ferramentas.bat
         </a>
-    </li>
+      </div>
+    </div>
+  </section>
 
-    <li>
-        <strong>Positivo Tecnologia</strong><br>
-        <a href="https://www.meupositivo.com.br/para-voce/suporte-tecnico/drivers/" target="_blank">
-           https://www.meupositivo.com.br/para-voce/suporte-tecnico/drivers/
+  <!-- 2021 (Office) -->
+  <section class="categoria">
+    <div class="categoria-titulo">
+      <i class="fas fa-calendar-alt"></i>
+      <span>Pacote Office 2021</span>
+    </div>
+    <div class="grid-links">
+      <!-- pasta code (relativa) -->
+      <div class="card-link">
+        <a href="./code/" class="link-interno">
+          <i class="fas fa-folder-open"></i> code/
         </a>
-    </li>
+      </div>
+      <!-- Imagem ProPlus2021Retail.img -->
+      <div class="card-link">
+        <a href="https://officecdn.microsoft.com/db/492350f6-3a01-4f97-b9c0-c7c6ddf67d60/media/pt-br/ProPlus2021Retail.img" target="_blank" rel="noopener" class="link-externo">
+          <i class="fas fa-download download-icon"></i> ProPlus2021Retail.img
+          <span class="badge">imagem oficial</span>
+        </a>
+      </div>
+    </div>
+  </section>
 
-    <li>
-        <strong>Multilaser</strong><br>
-        <a href="https://suporte.multilaser.com.br" target="_blank">
-            https://suporte.multilaser.com.br
-        </a>
-    </li>
+  <!-- DRIVERS: fabricantes de PCs (lista original) -->
+  <section class="categoria">
+    <div class="categoria-titulo">
+      <i class="fas fa-microchip"></i>
+      <span>Drivers de grandes marcas</span>
+    </div>
+    <div class="driver-section">
+      <div style="margin-bottom: 1rem; display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+        <i class="fas fa-desktop" style="font-size: 1.4rem; color:#1e5775;"></i>
+        <span style="font-weight: 500;">Sites oficiais (Brasil)</span>
+      </div>
+      <div class="grid-links" style="grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));">
+        <!-- Dell -->
+        <div class="card-link"><a href="https://www.dell.com/support/drivers" target="_blank" class="link-externo"><i class="fab fa-dell"></i> Dell Brasil</a></div>
+        <!-- HP -->
+        <div class="card-link"><a href="https://support.hp.com/br-pt/drivers" target="_blank" class="link-externo"><i class="fas fa-print"></i> HP Brasil</a></div>
+        <!-- Lenovo -->
+        <div class="card-link"><a href="https://support.lenovo.com/br" target="_blank" class="link-externo"><i class="fab fa-lenovo"></i> Lenovo Brasil</a></div>
+        <!-- Acer -->
+        <div class="card-link"><a href="https://www.acer.com/br-pt/support" target="_blank" class="link-externo"><i class="fas fa-laptop"></i> Acer Brasil</a></div>
+        <!-- ASUS -->
+        <div class="card-link"><a href="https://www.asus.com/br/support" target="_blank" class="link-externo"><i class="fas fa-computer"></i> ASUS Brasil</a></div>
+        <!-- Samsung -->
+        <div class="card-link"><a href="https://www.samsung.com/br/support" target="_blank" class="link-externo"><i class="fab fa-samsung"></i> Samsung Brasil</a></div>
+        <!-- Positivo (duplicado, mas incluímos) -->
+        <div class="card-link"><a href="https://www.meupositivo.com.br/para-voce/suporte-tecnico/drivers/" target="_blank" class="link-externo"><i class="fas fa-plus-circle"></i> Positivo</a></div>
+        <!-- Multilaser -->
+        <div class="card-link"><a href="https://suporte.multilaser.com.br" target="_blank" class="link-externo"><i class="fas fa-headset"></i> Multilaser</a></div>
+        <!-- VAIO -->
+        <div class="card-link"><a href="https://br.vaio.com/drivers" target="_blank" class="link-externo"><i class="fas fa-vaadin"></i> VAIO Brasil</a></div>
+      </div>
+    </div>
+    <!-- Link extra: "Drives Positivo" (já incluso acima, mas mantemos também como referência) -->
+    <div style="margin-top: 1rem; padding-left: 1rem;">
+      <a href="https://www.meupositivo.com.br/para-voce/suporte-tecnico/drivers" target="_blank" style="color: #1d5e8f; text-decoration: none; background: #deecf5; padding: 0.3rem 1.2rem; border-radius: 30px; display: inline-flex; align-items: center; gap: 0.5rem;">
+        <i class="fas fa-tools"></i> Drivers Positivo (direto)
+      </a>
+    </div>
+  </section>
 
-    <li>
-        <strong>VAIO Brasil</strong><br>
-        <a href="https://br.vaio.com/drivers" target="_blank">
-            https://br.vaio.com/drivers
-        </a>
-    </li>
-</ul>
+  <!-- COMPLEMENTO: Drivers adicionais (GPU / chipset) para ficar mais completo -->
+  <section class="categoria">
+    <div class="categoria-titulo">
+      <i class="fas fa-gpu"></i>
+      <span>Drivers de componentes</span>
+    </div>
+    <div class="grid-links">
+      <div class="card-link"><a href="https://www.nvidia.com/download/index.aspx" target="_blank" class="link-externo"><i class="fab fa-nvidia"></i> NVIDIA (GeForce)</a></div>
+      <div class="card-link"><a href="https://www.amd.com/pt/support" target="_blank" class="link-externo"><i class="fab fa-amd"></i> AMD Radeon / Chipset</a></div>
+      <div class="card-link"><a href="https://www.intel.com.br/content/www/br/pt/support/detect.html" target="_blank" class="link-externo"><i class="fab fa-intel"></i> Intel Drivers & Assistente</a></div>
+      <div class="card-link"><a href="https://www.realtek.com/en/component/zoo/category/network-interface-controllers-10-100-1000m-gigabit-ethernet-pci-express-software" target="_blank" class="link-externo"><i class="fas fa-network-wired"></i> Realtek (LAN)</a></div>
+    </div>
+  </section>
+
+  <!-- FERRAMENTAS úteis (reunião de alguns já citados e extras) -->
+  <section class="categoria">
+    <div class="categoria-titulo">
+      <i class="fas fa-wrench"></i>
+      <span>Utilitários recomendados</span>
+    </div>
+    <div class="grid-links">
+      <!-- winaero já está, mas incluímos de novo por contexto -->
+      <div class="card-link"><a href="https://winaerotweaker.com/" target="_blank" class="link-externo"><i class="fas fa-tweak"></i> Winaero Tweaker</a></div>
+      <div class="card-link"><a href="https://ivanildo.com.br/bat/adm-ferramentas.bat" target="_blank" class="link-externo"><i class="fas fa-file-code"></i> adm-ferramentas.bat</a></div>
+      <!-- adicionar 7-zip e vlc para ficar mais completo -->
+      <div class="card-link"><a href="https://www.7-zip.org/" target="_blank" class="link-externo"><i class="fas fa-file-archive"></i> 7-Zip</a></div>
+      <div class="card-link"><a href="https://www.videolan.org/vlc/index.pt-BR.html" target="_blank" class="link-externo"><i class="fas fa-play-circle"></i> VLC media player</a></div>
+      <div class="card-link"><a href="https://notepad-plus-plus.org/downloads/" target="_blank" class="link-externo"><i class="fas fa-pen-fancy"></i> Notepad++</a></div>
+    </div>
+  </section>
+
+  <!-- REPETINDO O LINK DE PAPEL DE PAREDE (caso queira rápido) -->
+  <div style="display: flex; justify-content: flex-end; margin: 1rem 0 0.5rem;">
+    <span style="background: #e1f0f9; padding: 0.3rem 1rem; border-radius: 30px; font-size: 0.9rem;">
+      <i class="fas fa-arrow-down" style="color:#1f6c92;"></i> 
+      <a href="./w.png" style="text-decoration: none; color: #164863;">wallpaper local (w.png)</a>
+    </span>
+  </div>
+
+  <footer>
+    <p><i class="fas fa-heart" style="color: #ba7979;"></i> Página mantida para acesso rápido • Links verificados • <i class="fas fa-sync-alt"></i> atualizado em 2025</p>
+    <p style="font-size:0.85rem; opacity:0.7;">Clique em qualquer link para abrir. Ícones indicam sites externos.</p>
+  </footer>
+</div>
+<!-- fim container -->
+</body>
 </html>
