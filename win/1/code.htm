@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copiar Conteúdo do Textarea</title>
+</head>
+<body>
+    <textarea id="meuTextarea" rows="4" cols="50">irm https://get.activated.win | iex</textarea>
+    <br>
+    <button onclick="copiarTexto()">Copiar Texto</button>
+
+    <script>
+        function copiarTexto() {
+            const textarea = document.getElementById('meuTextarea');
+            textarea.select();
+            textarea.setSelectionRange(0, 99999); // Para dispositivos móveis
+
+            try {
+                // Tenta usar o comando de copiar
+                const sucesso = document.execCommand('copy');
+                if (sucesso) {
+                    alert('Texto copiado com sucesso!');
+                } else {
+                    throw new Error('Falha ao copiar texto.');
+                }
+            } catch (err) {
+                console.error('Erro ao copiar texto: ', err);
+                alert('Erro ao copiar texto. Veja o console para mais detalhes.');
+            }
+        }
+    </script>
+</body>
+</html>
