@@ -60,12 +60,43 @@
 
     .subhead {
       color: #2f4b6e;
-      margin-bottom: 2.5rem;
+      margin-bottom: 1.5rem;
       font-size: 1.2rem;
       border-left: 4px solid #3f8db3;
       padding-left: 1.2rem;
       background: rgba(63, 141, 179, 0.05);
       border-radius: 0 8px 8px 0;
+    }
+
+    /* NOVO: Menu de navegação com links de suporte do Windows */
+    .nav-menu {
+      background: #164863;
+      padding: 12px 24px;
+      border-radius: 50px;
+      margin: 20px 0 30px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      box-shadow: 0 6px 14px rgba(0, 40, 60, 0.2);
+    }
+    .nav-menu a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 8px 20px;
+      border-radius: 40px;
+      background: rgba(255,255,255,0.1);
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .nav-menu a:hover {
+      background: rgba(255,255,255,0.25);
+      transform: scale(1.02);
+      border-color: rgba(255,255,255,0.4);
     }
 
     .categoria {
@@ -148,7 +179,6 @@
       color: currentColor;
     }
 
-    /* para links internos (relativos) não mostrar ícone de externo */
     .link-interno::after {
       display: none;
     }
@@ -176,7 +206,7 @@
       text-align: center;
       color: #527a94;
       font-size: 0.95rem;
-      border-top: 2px dashed #b0cfE5;
+      border-top: 2px dashed #b0cfe5;
       padding-top: 2rem;
     }
 
@@ -189,9 +219,9 @@
       .container { padding: 1.5rem 1rem; }
       h1 { font-size: 2rem; }
       .categoria-titulo { font-size: 1.5rem; }
+      .nav-menu { flex-direction: column; align-items: stretch; text-align: center; }
     }
 
-    /* para links de download direto */
     .download-icon {
       color: #3b8f6d;
     }
@@ -208,6 +238,13 @@
       <i class="fas fa-compass" style="margin-right: 0.5rem;"></i> Acesso rápido a drivers, navegadores, ferramentas e imagens oficiais
     </div>
   </header>
+
+  <!-- NOVO: Menu de navegação com os links de suporte do Windows -->
+  <div class="nav-menu">
+    <a href="/win/"><i class="fab fa-windows"></i> /win/</a>
+    <a href="/win/1/"><i class="fas fa-wrench"></i> /win/1/</a>
+    <a href="/win/1/code/"><i class="fas fa-code"></i> /win/1/code/</a>
+  </div>
 
   <!-- SALA INFO (Navegadores + utilitários) -->
   <section class="categoria">
@@ -302,15 +339,15 @@
         <div class="card-link"><a href="https://www.asus.com/br/support" target="_blank" class="link-externo"><i class="fas fa-computer"></i> ASUS Brasil</a></div>
         <!-- Samsung -->
         <div class="card-link"><a href="https://www.samsung.com/br/support" target="_blank" class="link-externo"><i class="fab fa-samsung"></i> Samsung Brasil</a></div>
-        <!-- Positivo (duplicado, mas incluímos) -->
+        <!-- Positivo -->
         <div class="card-link"><a href="https://www.meupositivo.com.br/para-voce/suporte-tecnico/drivers/" target="_blank" class="link-externo"><i class="fas fa-plus-circle"></i> Positivo</a></div>
         <!-- Multilaser -->
         <div class="card-link"><a href="https://suporte.multilaser.com.br" target="_blank" class="link-externo"><i class="fas fa-headset"></i> Multilaser</a></div>
         <!-- VAIO -->
-        <div class="card-link"><a href="https://br.vaio.com/drivers" target="_blank" class="link-externo"><i class="fas fa-vaadin"></i> VAIO Brasil</a></div>
+        <div class="card-link"><a href="https://br.vaio.com/drivers" target="_blank" class="link-externo"><i class="fab fa-vaadin"></i> VAIO Brasil</a></div>
       </div>
     </div>
-    <!-- Link extra: "Drives Positivo" (já incluso acima, mas mantemos também como referência) -->
+    <!-- Link extra: "Drivers Positivo" (já incluso acima, mas mantemos também como referência) -->
     <div style="margin-top: 1rem; padding-left: 1rem;">
       <a href="https://www.meupositivo.com.br/para-voce/suporte-tecnico/drivers" target="_blank" style="color: #1d5e8f; text-decoration: none; background: #deecf5; padding: 0.3rem 1.2rem; border-radius: 30px; display: inline-flex; align-items: center; gap: 0.5rem;">
         <i class="fas fa-tools"></i> Drivers Positivo (direto)
@@ -358,10 +395,15 @@
   </div>
 
   <footer>
-    <p><i class="fas fa-heart" style="color: #ba7979;"></i> Página mantida para acesso rápido • Links verificados • <i class="fas fa-sync-alt"></i> atualizado em 2025</p>
+    <p><i class="fas fa-heart" style="color: #ba7979;"></i> Página mantida para acesso rápido • Links verificados • <i class="fas fa-sync-alt"></i> atualizado em <span id="copyright-year"></span></p>
     <p style="font-size:0.85rem; opacity:0.7;">Clique em qualquer link para abrir. Ícones indicam sites externos.</p>
   </footer>
 </div>
 <!-- fim container -->
+
+<script>
+  // Atualiza o ano no rodapé dinamicamente
+  document.getElementById('copyright-year').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
