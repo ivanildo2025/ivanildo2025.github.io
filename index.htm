@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ivanildo · Soluções Corporativas</title>
+    <!-- Fontes e ícones -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            background-color: #ffffff;
+        }
+
+        :root {
+            --primary: #0f2b45;      /* azul marinho sofisticado */
+            --primary-light: #1e4a6f;
+            --accent: #c19a5b;        /* dourado suave */
+            --gray-100: #f8fafc;
+            --gray-200: #f1f5f9;
+            --gray-600: #475569;
+            --gray-800: #1e293b;
+            --border: #e2e8f0;
+            --shadow-sm: 0 4px 6px -2px rgba(0,0,0,0.05), 0 10px 15px -3px rgba(0,0,0,0.03);
+            --shadow-md: 0 20px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.02);
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(255,255,255,0.98);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .header-flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.02em;
+        }
+        .logo span {
+            color: var(--accent);
+            font-weight: 300;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2.5rem;
+            font-weight: 500;
+        }
+        .nav-menu a {
+            color: var(--gray-800);
+            text-decoration: none;
+            transition: color 0.2s;
+            font-size: 1rem;
+        }
+        .nav-menu a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 5rem 0 4rem;
+            background: linear-gradient(145deg, #ffffff 0%, var(--gray-100) 100%);
+        }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 3rem;
+        }
+        .hero-content h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        .hero-content .highlight {
+            color: var(--accent);
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+        }
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--gray-600);
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+        .hero-image {
+            background-color: var(--primary);
+            border-radius: 16px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: 300;
+            box-shadow: var(--shadow-md);
+            background-image: radial-gradient(circle at 30% 50%, #2b5f8a 0%, #0a2540 100%);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.2s, transform 0.1s;
+            border: 1px solid transparent;
+        }
+        .btn:hover {
+            background-color: var(--primary-light);
+            transform: scale(1.02);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border-color: var(--primary);
+            margin-left: 1rem;
+        }
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Seções */
+        section {
+            padding: 5rem 0;
+        }
+        section:nth-child(even) {
+            background-color: var(--gray-100);
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray-600);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+
+        /* Cards de serviços */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.2s;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+        .service-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-4px);
+            border-color: var(--accent);
+        }
+        .service-card i {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        .service-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+        }
+        .service-card p {
+            color: var(--gray-600);
+        }
+
+        /* Diferenciais (com ícones e lista) */
+        .diffs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .diff-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .diff-icon {
+            background-color: rgba(193, 154, 91, 0.1);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        .diff-icon i {
+            font-size: 2rem;
+            color: var(--accent);
+        }
+        .diff-item h4 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+        .diff-item p {
+            color: var(--gray-600);
+            font-size: 0.95rem;
+        }
+
+        /* Equipe */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2.5rem;
+        }
+        .team-member {
+            text-align: center;
+        }
+        .member-photo {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 500;
+            font-size: 3rem;
+            box-shadow: var(--shadow-sm);
+            border: 3px solid var(--accent);
+        }
+        .team-member h4 {
+            font-size: 1.3rem;
+            color: var(--primary);
+        }
+        .team-member p {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+        }
+
+        /* Clientes (marcas fictícias) */
+        .clients-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 3rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+        .client-item {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--gray-600);
+            opacity: 0.8;
+            transition: opacity 0.2s;
+            padding: 0.5rem 1rem;
+            background: white;
+            border-radius: 40px;
+            border: 1px solid var(--border);
+        }
+        .client-item:hover {
+            opacity: 1;
+            color: var(--primary);
+            border-color: var(--accent);
+        }
+
+        /* Contato */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+        .contact-info h3, .contact-form h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        .contact-list {
+            list-style: none;
+        }
+        .contact-list li {
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.1rem;
+        }
+        .contact-list i {
+            width: 30px;
+            color: var(--accent);
+            font-size: 1.3rem;
+        }
+        .contact-list a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dotted transparent;
+        }
+        .contact-list a:hover {
+            border-bottom-color: var(--accent);
+        }
+
+        /* Formulário simples */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        .btn-submit {
+            background-color: var(--accent);
+            color: var(--primary);
+            font-weight: 700;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .btn-submit:hover {
+            background-color: #b08747;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: #e2e8f0;
+            padding: 3rem 0 2rem;
+            font-size: 0.95rem;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+        }
+        .footer-about p {
+            margin: 1rem 0;
+        }
+        .footer-links h5, .footer-social h5 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        .footer-links ul {
+            list-style: none;
+        }
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+        }
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        .social-icons {
+            display: flex;
+            gap: 1.2rem;
+        }
+        .social-icons a {
+            color: white;
+            font-size: 1.4rem;
+        }
+        .social-icons a:hover {
+            color: var(--accent);
+        }
+        .footer-bottom {
+            border-top: 1px solid #2d4a6e;
+            padding-top: 2rem;
+            text-align: center;
+            color: #94a3b8;
+        }
+        #copyright-year {
+            font-weight: 600;
+            color: white;
+        }
+
+        /* Responsivo */
+        @media (max-width: 900px) {
+            .hero-grid, .contact-grid, .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .nav-menu {
+                gap: 1.2rem;
+            }
+        }
+        @media (max-width: 600px) {
+            .header-flex {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-flex">
+            <div class="logo">Ivanildo<span>.</span></div>
+            <nav class="nav-menu">
+                <a href="#home">Início</a>
+                <a href="#servicos">Serviços</a>
+                <a href="#sobre">Sobre</a>
+                <a href="#equipe">Equipe</a>
+                <a href="#contato">Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <section id="home" class="hero">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <h1>Conectando <span class="highlight">pessoas</span> e negócios com excelência</h1>
+                    <p>Consultoria, suporte e soluções personalizadas para sua empresa crescer de forma sustentável.</p>
+                    <div>
+                        <a href="#contato" class="btn">Fale conosco</a>
+                        <a href="#servicos" class="btn btn-outline">Conheça mais</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <i class="fas fa-building" style="font-size: 5rem; opacity: 0.8;"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVIÇOS -->
+        <section id="servicos">
+            <!--<div class="container">
+                <h2 class="section-title">Nossas soluções</h2>
+                <p class="section-subtitle">Atendemos diferentes áreas da sua empresa com equipes especializadas.</p>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <i class="fas fa-users"></i>
+                        <h3>Recursos Humanos</h3>
+                        <p>Recrutamento, treinamento e gestão de clima organizacional.</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-headset"></i>
+                        <h3>Suporte</h3>
+                        <p>Atendimento técnico e help desk para sua equipe e clientes.</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-handshake"></i>
+                        <h3>Consultoria</h3>
+                        <p>Estratégias de negócio, processos e melhoria contínua.</p>
+                    </div>
+                </div>
+            </div>-->
+        </section>
+
+        <!-- SOBRE + DIFERENCIAIS -->
+        <section id="sobre">
+            <div class="container">
+                <h2 class="section-title">Sobre a Ivanildo</h2>
+                <p class="section-subtitle">Mais de uma década construindo relações de confiança.</p>
+                <div style="max-width: 900px; margin: 0 auto 3rem; text-align: center; color: var(--gray-600);">
+                    <p>Nascemos da necessidade de oferecer um atendimento humanizado e eficiente para empresas de todos os portes. Combinamos experiência e inovação para entregar resultados que realmente importam.</p>
+                </div>
+
+                <div class="diffs-grid">
+                    <div class="diff-item">
+                        <div class="diff-icon"><i class="fas fa-bolt"></i></div>
+                        <h4>Agilidade</h4>
+                        <p>Respostas rápidas e soluções eficazes.</p>
+                    </div>
+                    <div class="diff-item">
+                        <div class="diff-icon"><i class="fas fa-shield-alt"></i></div>
+                        <h4>Confiança</h4>
+                        <p>Transparência em cada processo.</p>
+                    </div>
+                    <div class="diff-item">
+                        <div class="diff-icon"><i class="fas fa-chart-line"></i></div>
+                        <h4>Resultado</h4>
+                        <p>Foco no crescimento do seu negócio.</p>
+                    </div>
+                    <div class="diff-item">
+                        <div class="diff-icon"><i class="fas fa-heart"></i></div>
+                        <h4>Humanidade</h4>
+                        <p>Pessoas cuidando de pessoas.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EQUIPE -->
+        <section id="equipe">
+            <div class="container">
+                <h2 class="section-title">Nossa equipe</h2>
+                <p class="section-subtitle">Profissionais dedicados a fazer a diferença.</p>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="member-photo">I</div>
+                        <h4>Ivanildo Mendes</h4>
+                        <p>Fundador & CEO</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-photo">M</div>
+                        <h4>Mariana Costa</h4>
+                        <p>Diretora de RH</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-photo">R</div>
+                        <h4>Sara Lopes</h4>
+                        <p>Coordenador de Suporte</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-photo">F</div>
+                        <h4>Fernanda Alves</h4>
+                        <p>Analista de Contas</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CLIENTES -->
+        <!--<section>
+            <div class="container">
+                <h2 class="section-title">Empresas que confiam</h2>
+                <div class="clients-grid">
+                    <span class="client-item">TechCorp</span>
+                    <span class="client-item">Grupo Solar</span>
+                    <span class="client-item">NovaMarca</span>
+                    <span class="client-item">Beta Soluções</span>
+                    <span class="client-item">Atlas</span>
+                </div>
+            </div>
+        </section> -->
+
+        <!-- CONTATO -->
+        <section id="contato">
+            <div class="container">
+                <h2 class="section-title">Entre em contato</h2>
+                <p class="section-subtitle">Escolha o canal mais adequado para sua necessidade.</p>
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h3><i class="fas fa-envelope-open-text" style="color: var(--accent);"></i> E-mails diretos</h3>
+                        <ul class="contact-list">
+                            <li><i class="fas fa-user-tie"></i> <strong>RH:</strong> <a href="mailto:rh@ivanildo.com.br">rh@ivanildo.com.br</a></li>
+                            <li><i class="fas fa-comment"></i> <strong>Contato geral:</strong> <a href="mailto:contato@ivanildo.com.br">contato@ivanildo.com.br</a></li>
+                            <li><i class="fas fa-life-ring"></i> <strong>Suporte:</strong> <a href="mailto:suporte@ivanildo.com.br">suporte@ivanildo.com.br</a></li>
+                        </ul>
+                        <!--<p style="margin-top: 2rem; background: var(--gray-200); padding: 1rem; border-radius: 12px;">
+                            📍 Av. Paulista, 1000 - São Paulo/SP<br>
+                            📞 +55 (11) 99999-9999
+                        </p>
+                    </div>
+                    <div class="contact-form">
+                        <h3>Ou envie uma mensagem</h3>
+                        <form action="#" method="post">
+                            <div class="form-group">
+                                <input type="text" placeholder="Seu nome" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" placeholder="Seu e-mail" required>
+                            </div>
+                            <div class="form-group">
+                                <select style="width:100%; padding:0.8rem; border:1px solid var(--border); border-radius:8px;">
+                                    <option>Assunto: RH</option>
+                                    <option>Assunto: Contato</option>
+                                    <option>Assunto: Suporte</option>
+                                    <option>Outro</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <textarea placeholder="Sua mensagem" required></textarea>
+                            </div>
+                            <button type="submit" class="btn-submit">Enviar mensagem</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+-->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="logo" style="color: white;">Ivanildo<span style="color: var(--accent);">.</span></div>
+                    <p>Soluções corporativas com foco em pessoas e resultados. Atendimento ágil e personalizado.</p>
+                </div>
+                <div class="footer-links">
+                    <h5>Navegação</h5>
+                    <ul>
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#servicos">Serviços</a></li>
+                        <li><a href="#sobre">Sobre</a></li>
+                        <li><a href="#equipe">Equipe</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h5>Redes</h5>
+                    <div class="social-icons">
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>© <span id="copyright-year"></span> Ivanildo. Todos os direitos reservados.</div>
+                <div style="margin-top: 0.5rem;">ivanildo.com.br</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            // Atualiza o ano no rodapé
+            document.getElementById('copyright-year').textContent = new Date().getFullYear();
+
+            // Scroll suave para links internos
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href === "#") return;
+                    const target = document.querySelector(href);
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+        })();
+    </script>
+</body>
+</html>
