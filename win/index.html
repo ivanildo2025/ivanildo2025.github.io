@@ -31,6 +31,33 @@
             font-size: 32px;
             color: #2f6e9c;
         }
+        /* Menu de navegação - novo */
+        .nav-menu {
+            background: #1e3b5c;
+            padding: 12px 24px;
+            border-radius: 50px;
+            margin: 20px 0 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 40px;
+            background: rgba(255,255,255,0.1);
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .nav-menu a:hover {
+            background: rgba(255,255,255,0.25);
+            transform: scale(1.02);
+        }
         .links {
             background: #eef6fb;
             padding: 16px 20px;
@@ -210,6 +237,20 @@
         .info-note i {
             margin-right: 8px;
         }
+
+        /* Rodapé com copyright */
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            color: #64748b;
+            font-size: 0.9rem;
+            border-top: 1px solid #cbd5e1;
+            padding-top: 20px;
+        }
+        #copyright-year {
+            font-weight: 600;
+            color: #1e3b5c;
+        }
     </style>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -221,7 +262,14 @@
         Gerador net user (delete separado)
     </h1>
 
-    <!-- Links existentes -->
+    <!-- NOVO: Menu de navegação com os links de suporte do Windows -->
+    <div class="nav-menu">
+        <a href="/win/"><i class="fas fa-windows"></i> /win/</a>
+        <a href="/win/1/"><i class="fas fa-wrench"></i> /win/1/</a>
+        <a href="/win/1/code/"><i class="fas fa-code"></i> /win/1/code/</a>
+    </div>
+
+    <!-- Links existentes (avatar e imagem) -->
     <div class="links">
         <a href="./avatar.png"><i class="fas fa-user-circle"></i> Avatar</a>
         <a href="https://images.alphacoders.com/127/thumb-1920-1276648.png" target="_blank"><i class="fas fa-external-link-alt"></i> thumb-1920-1276648.png</a>
@@ -275,6 +323,12 @@ net user</textarea>
         <i class="fas fa-info-circle"></i> 
         O comando de exclusão fica separado para evitar remoção acidental. Use com cuidado.
     </div>
+
+    <!-- Rodapé com copyright dinâmico -->
+    <footer>
+        <div>© <span id="copyright-year"></span> Ivanildo. Todos os direitos reservados.</div>
+        <div style="margin-top: 0.3rem;">ivanildo.com.br</div>
+    </footer>
 </div>
 
 <script>
@@ -370,9 +424,11 @@ net user`;
         gerarComandos();
     }
 
-    // Inicializar com os valores padrão (USD/1234)
+    // Inicializar com os valores padrão (USD/1234) e configurar ano do copyright
     window.onload = function() {
         gerarComandos();
+        // Atualiza o ano no rodapé
+        document.getElementById('copyright-year').textContent = new Date().getFullYear();
     };
 </script>
 </body>
