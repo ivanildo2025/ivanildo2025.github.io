@@ -2,118 +2,51 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Links a partir de CSV</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
+        body { font-family: Arial; margin: 20px; }
         ul { list-style: none; padding: 0; }
         li { margin: 5px 0; }
         a { text-decoration: none; color: #0066cc; }
         a:hover { text-decoration: underline; }
-        .error { color: #cc0000; }
-        .info { color: #666; font-style: italic; }
-        button { margin: 10px 0; padding: 8px 12px; }
     </style>
 </head>
 <body>
     <h1>Links do arquivo lista.csv</h1>
-
-    <div id="controles">
-        <button id="carregarPadrao">Tentar carregar lista.csv padrão</button>
-        <span>ou</span>
-        <input type="file" id="selecionarArquivo" accept=".csv">
-    </div>
-
-    <div id="mensagem" class="info">Clique no botão para carregar o arquivo padrão ou selecione um arquivo CSV.</div>
     <ul id="listaLinks"></ul>
+    <p id="mensagem"></p>
 
     <script>
-        const lista = document.getElementById('listaLinks');
-        const mensagem = document.getElementById('mensagem');
+        fetch('lista.csv')
+            .then(response => {
+                if (!response.ok) throw new Error('Arquivo não encontrado');
+                return response.text();
+            })
+            .then(conteudo => {
+                const lista = document.getElementById('listaLinks');
+                const linhas = conteudo.split('\n').filter(l => l.trim() !== '');
+                let total = 0;
 
-        // Função que processa o conteúdo do CSV
-        function processarCSV(conteudo) {
-            lista.innerHTML = ''; // limpa lista anterior
-            const linhas = conteudo.split('\n').filter(linha => linha.trim() !== '');
-            
-            if (linhas.length === 0) {
-                mensagem.textContent = 'Arquivo vazio.';
-                return;
-            }
-
-            let linksAdicionados = 0;
-            linhas.forEach((linha, index) => {
-                // Ignorar linhas em branco
-                if (!linha.trim()) return;
-
-                // Divide pelo separador '|'
-                const partes = linha.split('|').map(s => s.trim());
-                if (partes.length >= 2) {
-                    const url = partes[0];
-                    const ancora = partes[1];
-                    
-                    const li = document.createElement('li');
-                    const a = document.createElement('a');
-                    a.href = url;
-                    a.textContent = ancora;
-                    a.target = '_blank'; // abre em nova aba (opcional)
-                    li.appendChild(a);
-                    lista.appendChild(li);
-                    linksAdicionados++;
-                } else {
-                    // Linha mal formatada
-                    console.warn(`Linha ${index + 1} ignorada (formato inválido): "${linha}"`);
-                }
-            });
-
-            if (linksAdicionados > 0) {
-                mensagem.textContent = `${linksAdicionados} link(s) carregado(s).`;
-            } else {
-                mensagem.textContent = 'Nenhum link válido encontrado.';
-            }
-        }
-
-        // Carrega o arquivo via fetch (para o caso de estar servido por um servidor web)
-        function carregarArquivoPadrao() {
-            mensagem.textContent = 'Carregando lista.csv...';
-            lista.innerHTML = ''; // limpa
-
-            fetch('lista.csv')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`Erro HTTP: ${response.status}`);
+                linhas.forEach(linha => {
+                    const partes = linha.split('|').map(s => s.trim());
+                    if (partes.length >= 2) {
+                        const li = document.createElement('li');
+                        const a = document.createElement('a');
+                        a.href = partes[0];
+                        a.textContent = partes[1];
+                        a.target = '_blank';
+                        li.appendChild(a);
+                        lista.appendChild(li);
+                        total++;
                     }
-                    return response.text();
-                })
-                .then(conteudo => {
-                    processarCSV(conteudo);
-                })
-                .catch(erro => {
-                    console.error(erro);
-                    mensagem.innerHTML = 'Não foi possível carregar <code>lista.csv</code> automaticamente. Isso é comum ao abrir a página diretamente do disco (file://). Use o seletor de arquivo acima para escolher o arquivo manualmente.';
                 });
-        }
 
-        // Evento para upload manual do arquivo
-        document.getElementById('selecionarArquivo').addEventListener('change', function(event) {
-            const arquivo = event.target.files[0];
-            if (!arquivo) return;
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                processarCSV(e.target.result);
-            };
-            reader.onerror = function() {
-                mensagem.textContent = 'Erro ao ler o arquivo.';
-            };
-            reader.readAsText(arquivo);
-        });
-
-        // Botão para tentar o fetch
-        document.getElementById('carregarPadrao').addEventListener('click', carregarArquivoPadrao);
-
-        // Tenta carregar automaticamente ao abrir a página (opcional)
-        // carregarArquivoPadrao(); // Descomente se quiser tentar imediatamente
+                document.getElementById('mensagem').textContent = 
+                    total > 0 ? `${total} link(s) carregado(s).` : 'Nenhum link válido encontrado.';
+            })
+            .catch(erro => {
+                document.getElementById('mensagem').textContent = 'Erro ao carregar lista.csv: ' + erro.message;
+            });
     </script>
 </body>
 </html>
