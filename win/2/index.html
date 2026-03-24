@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instalar Windows Sem Internet</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e3a8a);
+      color: #fff;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 800px;
+      width: 100%;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+      color: #93c5fd;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+      padding: 25px;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      animation: fadeIn 0.6s ease;
+    }
+
+    .step-title {
+      font-size: 20px;
+      color: #60a5fa;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: #e5e7eb;
+    }
+
+    .highlight {
+      margin-top: 15px;
+      padding: 12px;
+      background: rgba(59, 130, 246, 0.2);
+      border-left: 4px solid #3b82f6;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    .command {
+      margin-top: 10px;
+      padding: 12px;
+      background: rgba(0,0,0,0.5);
+      border-radius: 8px;
+      font-family: monospace;
+      color: #22c55e;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>Etapas para Instalar o Windows Sem Internet</h1>
+
+    <div class="card">
+      <div class="step-title">1. Inicie a Instalação normalmente</div>
+      <p>
+        Comece a instalação do Windows 10 ou 11 como de costume, até chegar à tela onde ele pede para se conectar a uma rede (Wi-Fi ou Ethernet).
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="step-title">2. Acesse o Prompt de Comando com Shift + F10</div>
+      <p>
+        Na tela onde o sistema pede a conexão com a internet, pressione as teclas:
+      </p>
+      <div class="highlight">
+        Shift + F10
+      </div>
+      <p>
+        Isso abrirá uma janela do Prompt de Comando.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="step-title">3. Execute o Comando para Pular a Conexão</div>
+      <p>No Prompt de Comando, digite o seguinte comando:</p>
+      <div class="command">
+        OOBE\BYPASSNRO
+      </div>
+      <p>E pressione Enter.</p>
+    </div>
+
+    <div class="card">
+      <div class="step-title">4. Reinicie a Instalação</div>
+      <p>
+        Após o comando, o Windows será reiniciado automaticamente.
+        Quando você voltar para a tela de configuração, uma nova opção estará disponível:
+      </p>
+
+      <div class="highlight">
+        “Eu não tenho internet” ou “Ignorar por agora”
+      </div>
+
+      <p>
+        Selecione essa opção e continue com a instalação normalmente,
+        agora podendo criar uma conta local.
+      </p>
+    </div>
+
+  </div>
+
+</body>
+</html>
